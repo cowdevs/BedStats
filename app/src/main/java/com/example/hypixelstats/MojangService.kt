@@ -6,6 +6,6 @@ import retrofit2.http.Path
 
 
 interface MojangService {
-    @GET("users/profiles/minecraft/{user}")
-    fun queryUsername(@Path("user") user: String?): Call<Player>
+    @GET("name/{name}")
+    fun queryUsername(@Path("name") name: String): Call<Player>
 }

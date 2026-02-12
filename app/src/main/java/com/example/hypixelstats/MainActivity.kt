@@ -1,5 +1,6 @@
 package com.example.hypixelstats
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -12,6 +13,10 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
+    companion object {
+        const val EXTRA_PLAYER = "playeyyeryeyryerrrrrr"
+    }
+
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,16 +33,16 @@ class MainActivity : AppCompatActivity() {
         binding.buttonMainSearch.setOnClickListener {
             val searchPlayer = binding.editTextMainSearchPlayer.text.toString()
             if (searchPlayer.isNotEmpty()) {
-                val mojangService = RetrofitHelper.getInstance().create(MojangService::class.java)
+                val mojangService = RetrofitHelper.getInstanceMojangAPI().create(MojangService::class.java)
                 val mojangCall = mojangService.queryUsername(searchPlayer)
                 mojangCall.enqueue(object : Callback<Player> {
                     override fun onResponse(call: Call<Player?>, response: Response<Player?>) {
-                        val body = response.body()
-                        if (body != null) {
-                            val player = body.id
-                            Toast.makeText(this@MainActivity, player, Toast.LENGTH_SHORT).show()
+                        val context = this@MainActivity
+                        val player = response.body()
+                        if (player != null) {
+                            goToDetailPage(player)
                         } else {
-                            Toast.makeText(this@MainActivity, "Player not found", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, "Player not found", Toast.LENGTH_SHORT).show()
                         }
                     }
 
@@ -49,5 +54,11 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    private fun goToDetailPage(player: Player) {
+        val intent = Intent(this, DetailActivity::class.java)
+        intent.putExtra(EXTRA_PLAYER, player)
+        startActivity(intent)
     }
 }
