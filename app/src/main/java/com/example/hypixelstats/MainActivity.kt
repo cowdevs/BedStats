@@ -31,26 +31,32 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.buttonMainSearch.setOnClickListener {
-            val searchPlayer = binding.editTextMainSearchPlayer.text.toString()
-            if (searchPlayer.isNotEmpty()) {
-                val mojangService = RetrofitHelper.getInstanceMojangAPI().create(MojangService::class.java)
-                val mojangCall = mojangService.queryUsername(searchPlayer)
-                mojangCall.enqueue(object : Callback<Player> {
-                    override fun onResponse(call: Call<Player?>, response: Response<Player?>) {
-                        val context = this@MainActivity
-                        val player = response.body()
-                        if (player != null) {
-                            goToDetailPage(player)
-                        } else {
-                            Toast.makeText(context, "Player not found", Toast.LENGTH_SHORT).show()
-                        }
+            val searchPlayer = binding.editTextMainSearchPlayer.text.toString().trim()
+            binding.buttonMainSearch.isEnabled = false
+
+            val mojangService = RetrofitHelper.getInstanceMojangAPI().create(MojangService::class.java)
+            val mojangCall = mojangService.queryUsername(searchPlayer)
+            mojangCall.enqueue(object : Callback<Player> {
+                override fun onResponse(call: Call<Player?>, response: Response<Player?>) {
+                    binding.buttonMainSearch.isEnabled = true
+                    if (!response.isSuccessful) {
+                        Toast.makeText(this@MainActivity, "Request failed (${response.code()})", Toast.LENGTH_SHORT).show()
+                        return
                     }
 
-                    override fun onFailure(call: Call<Player?>, t: Throwable) {
-                        TODO("Not yet implemented")
+                    val player = response.body()
+                    if (player != null) {
+                        goToDetailPage(player)
+                    } else {
+                        Toast.makeText(this@MainActivity, "Player not found", Toast.LENGTH_SHORT).show()
                     }
-                })
-            }
+                }
+
+                override fun onFailure(call: Call<Player?>, t: Throwable) {
+                    binding.buttonMainSearch.isEnabled = true
+                    Toast.makeText(this@MainActivity, "Network error: ${t.localizedMessage ?: "unknown"}", Toast.LENGTH_SHORT).show()
+                }
+            })
         }
 
 

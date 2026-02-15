@@ -7,7 +7,7 @@ import retrofit2.http.Query
 
 
 interface HypixelService {
-    @Headers("API-Key: e436b77e-39f1-4f13-b985-c6390af7b946")
+    @Headers("API-Key: 6904e1f3-95b4-4d55-80e6-14e7609618a8")
     @GET("player")
     fun getHypixelPlayerData(@Query("uuid") uuid: String): Call<PlayerData>
 }
