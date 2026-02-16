@@ -1,4 +1,17 @@
 <resources>
-    <string name="app_name">Hypixel Stats</string>
+    <string name="app_name">BedStats</string>
     <string name="search_button">Search</string>
+    <string name="wlr_label">WLR</string>
+    <string name="fkdr_label">FKDR</string>
+    <string name="kdr_label">KDR</string>
+    <string name="bblr_label">BBLR</string>
+    <string name="player_search_hint">Player</string>
+    <string name="kills_label">Kills</string>
+    <string name="deaths_label">Deaths</string>
+    <string name="final_kills_label">Final\nKills</string>
+    <string name="final_deaths_label">Final\nDeaths</string>
+    <string name="wins_label">Wins</string>
+    <string name="losses_label">Losses</string>
+    <string name="beds_broken_label">Beds\nBroken</string>
+    <string name="beds_lost">Beds\nLost</string>
 </resources>

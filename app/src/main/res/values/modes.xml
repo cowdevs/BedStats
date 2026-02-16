@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="modes_array">
+        <item>Overall</item>
+        <item>Solo</item>
+        <item>Doubles</item>
+        <item>Threes</item>
+        <item>Fours</item>
+        <item>Core</item>
+        <item>4v4</item>
+        <item>Rush</item>
+        <item>Ultimate</item>
+        <item>Castle</item>
+        <item>Voidless</item>
+        <item>Armed</item>
+        <item>Lucky Blocks</item>
+        <item>Swap</item>
+        <item>One Block</item>
+    </string-array>
+</resources>

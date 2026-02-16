@@ -67,34 +67,6 @@ data class PlayerData(
             @SerializedName("four_four_deaths_bedwars") val foursDeaths: Int,
             @SerializedName("four_four_beds_broken_bedwars") val foursBedsBroken: Int,
             @SerializedName("four_four_beds_lost_bedwars") val foursBedsLost: Int,
-
-            // 4v4
-            @SerializedName("two_four_wins_bedwars") val fours2Wins: Int,
-            @SerializedName("two_four_losses_bedwars") val fours2Losses: Int,
-            @SerializedName("two_four_final_kills_bedwars") val fours2FinalKills: Int,
-            @SerializedName("two_four_final_deaths_bedwars") val fours2FinalDeaths: Int,
-            @SerializedName("two_four_kills_bedwars") val fours2Kills: Int,
-            @SerializedName("two_four_deaths_bedwars") val fours2Deaths: Int,
-            @SerializedName("two_four_beds_broken_bedwars") val fours2BedsBroken: Int,
-            @SerializedName("two_four_beds_lost_bedwars") val fours2BedsLost: Int,
-
-            // Armed
-
-            // Castle
-
-            // Lucky
-
-            // Rush
-
-            // Swap
-
-            // Ultimate
-
-            // Underworld
-
-            // Voidless
-
-            // One Block
         )
     }
 }

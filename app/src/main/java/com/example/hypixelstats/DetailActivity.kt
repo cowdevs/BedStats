@@ -40,7 +40,7 @@ class DetailActivity : AppCompatActivity() {
 
         val player = intent.getParcelableExtra(MainActivity.EXTRA_PLAYER, Player::class.java)
         if (player != null) {
-            binding.imageView.load(BASE_URL_STARLIGHT_API + "default/${player.id}/bust")
+            binding.imageViewPlayerSkin.load(BASE_URL_STARLIGHT_API + "default/${player.id}/bust")
             val hypixelService = RetrofitHelper.getInstanceHypixelAPI().create(HypixelService::class.java)
             val hypixelCall = hypixelService.getHypixelPlayerData(player.id)
             hypixelCall.enqueue(object : Callback<PlayerData> {

@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
+    <color name="dark_blue">#FF0000AA</color>
+    <color name="dark_green">#FF00AA00</color>
+    <color name="dark_aqua">#FF00AAAA</color>
+    <color name="dark_red">#FFAA0000</color>
+    <color name="dark_purple">#FFAA00AA</color>
+    <color name="gold">#FFFFAA00</color>
+    <color name="gray">#FFAAAAAA</color>
+    <color name="dark_gray">#FF555555</color>
+    <color name="blue">#FF5555FF</color>
+    <color name="green">#FF55FF55</color>
+    <color name="aqua">#FF55FFFF</color>
+    <color name="red">#FFFF5555</color>
+    <color name="light_purple">#FFFF55FF</color>
+    <color name="yellow">#FFFFFF55</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="green">#FF52A635</color>
 </resources>
