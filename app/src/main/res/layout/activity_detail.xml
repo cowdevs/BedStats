@@ -70,7 +70,7 @@
             android:adjustViewBounds="true"
             android:importantForAccessibility="no"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/test_skin" />
+            app:srcCompat="@drawable/placeholder_skin" />
     </androidx.cardview.widget.CardView>
 
     <TextView

@@ -1,5 +1,6 @@
 package com.example.hypixelstats
 
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -15,8 +16,19 @@ object RetrofitHelper {
     }
 
     fun getInstanceHypixelAPI(): Retrofit {
+        val client = OkHttpClient.Builder()
+            .addInterceptor { chain ->
+                val original = chain.request()
+                val request = original.newBuilder()
+                    .header("API-Key", BuildConfig.HYPIXEL_API_KEY)
+                    .build()
+                chain.proceed(request)
+            }
+            .build()
+
         return Retrofit.Builder()
             .baseUrl(BASE_URL_HYPIXEL_API)
+            .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
