@@ -14,4 +14,12 @@
     <string name="losses_label">Losses</string>
     <string name="beds_broken_label">Beds\nBroken</string>
     <string name="beds_lost">Beds\nLost</string>
+    <string name="level_label">Level</string>
+    <string name="tokens_label">Tokens</string>
+    <string name="karma_label">Karma</string>
+    <string name="winstreak_label">Winstreak</string>
+    <string name="iron_label">Iron</string>
+    <string name="gold_label">Gold</string>
+    <string name="diamonds_label">Diamonds</string>
+    <string name="emeralds_label">Emeralds</string>
 </resources>

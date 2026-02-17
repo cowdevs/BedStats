@@ -35,104 +35,270 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_end="32dp" />
+        app:layout_constraintGuide_end="48dp" />
 
     <TextView
         android:id="@+id/textView_playerName"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/minecraft_ten"
+        android:textAlignment="center"
         android:textSize="24sp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
         app:layout_constraintTop_toTopOf="@+id/guideline_top"
-        tools:text="recapp_" />
+        tools:text="UltimatePlayer67" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView_playerSkin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:contextClickable="false"
-        app:cardBackgroundColor="#8A7777"
+        app:cardBackgroundColor="@color/gray"
         app:cardCornerRadius="16dp"
         app:cardElevation="2dp"
-        app:contentPaddingLeft="16dp"
-        app:contentPaddingRight="16dp"
+        app:contentPaddingLeft="8dp"
+        app:contentPaddingRight="8dp"
         app:contentPaddingTop="16dp"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
-        app:layout_constraintTop_toBottomOf="@+id/textView_playerName"
-        app:layout_constraintWidth_percent="0.33">
+        app:layout_constraintTop_toBottomOf="@+id/textView_playerName">
 
         <ImageView
             android:id="@+id/imageView_playerSkin"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="120dp"
             android:adjustViewBounds="true"
             android:importantForAccessibility="no"
-            android:scaleType="fitEnd"
-            app:srcCompat="@drawable/bust" />
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/test_skin" />
     </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/textView_levelLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/minecraft_ten"
+        android:labelFor="@id/textView_level"
+        android:text="@string/level_label"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@id/cardView_playerSkin"
+        app:layout_constraintTop_toTopOf="@+id/cardView_playerSkin" />
 
     <TextView
         android:id="@+id/textView_level"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="8dp"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView_expProgress"
+        android:layout_marginStart="12dp"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView_levelLabel"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
-        app:layout_constraintStart_toEndOf="@+id/cardView_playerSkin"
-        app:layout_constraintTop_toTopOf="@+id/cardView_playerSkin"
-        app:layout_constraintVertical_chainStyle="packed"
-        tools:text="Level: [64☆]" />
+        app:layout_constraintStart_toEndOf="@+id/textView_levelLabel"
+        tools:text="LEVEL" />
 
     <TextView
-        android:id="@+id/textView_expProgress"
+        android:id="@+id/textView_tokensLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/minecraft_ten"
+        android:labelFor="@id/textView_tokens"
+        android:text="@string/tokens_label"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@id/cardView_playerSkin"
+        app:layout_constraintTop_toBottomOf="@+id/textView_levelLabel" />
+
+    <TextView
+        android:id="@+id/textView_tokens"
         android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView_tokensLabel"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+        app:layout_constraintStart_toEndOf="@+id/textView_tokensLabel"
+        tools:text="TOKENS" />
+
+    <TextView
+        android:id="@+id/textView_winstreakLabel"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="8dp"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView_levelProgress"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
-        app:layout_constraintStart_toEndOf="@+id/cardView_playerSkin"
-        app:layout_constraintTop_toBottomOf="@+id/textView_level"
-        tools:text="EXP Progress: 4499/5000" />
+        android:fontFamily="@font/minecraft_ten"
+        android:labelFor="@id/textView_winstreak"
+        android:text="@string/winstreak_label"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView_ironLabel"
+        app:layout_constraintStart_toEndOf="@id/cardView_playerSkin"
+        app:layout_constraintTop_toBottomOf="@id/textView_tokensLabel" />
 
     <TextView
-        android:id="@+id/textView_levelProgress"
+        android:id="@+id/textView_winstreak"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView_winstreakLabel"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+        app:layout_constraintStart_toEndOf="@+id/textView_winstreakLabel"
+        tools:text="WINSTREAK" />
+
+    <ImageView
+        android:id="@+id/imageView_ironIcon"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
         android:layout_marginStart="16dp"
-        android:textSize="12sp"
+        android:importantForAccessibility="no"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_ironLabel"
+        app:layout_constraintStart_toEndOf="@+id/cardView_playerSkin"
+        app:layout_constraintTop_toTopOf="@+id/textView_ironLabel"
+        app:srcCompat="@drawable/iron_icon" />
+
+    <TextView
+        android:id="@+id/textView_ironLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:fontFamily="@font/minecraft_ten"
+        android:labelFor="@id/textView_iron"
+        android:text="@string/iron_label"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView_goldLabel"
+        app:layout_constraintStart_toEndOf="@+id/imageView_ironIcon"
+        app:layout_constraintTop_toBottomOf="@+id/textView_winstreakLabel" />
+
+    <TextView
+        android:id="@+id/textView_iron"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView_ironLabel"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+        app:layout_constraintStart_toEndOf="@+id/textView_ironLabel"
+        tools:text="IRON" />
+
+    <ImageView
+        android:id="@+id/imageView_goldIcon"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="16dp"
+        android:importantForAccessibility="no"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_goldLabel"
+        app:layout_constraintStart_toEndOf="@+id/cardView_playerSkin"
+        app:layout_constraintTop_toTopOf="@+id/textView_goldLabel"
+        app:srcCompat="@drawable/gold_icon" />
+
+    <TextView
+        android:id="@+id/textView_goldLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:fontFamily="@font/minecraft_ten"
+        android:labelFor="@id/textView_gold"
+        android:text="@string/gold_label"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView_diamondsLabel"
+        app:layout_constraintStart_toEndOf="@+id/imageView_goldIcon"
+        app:layout_constraintTop_toBottomOf="@+id/textView_ironLabel" />
+
+    <TextView
+        android:id="@+id/textView_gold"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView_goldLabel"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+        app:layout_constraintStart_toEndOf="@+id/textView_goldLabel"
+        tools:text="GOLD" />
+
+    <ImageView
+        android:id="@+id/imageView_diamondIcon"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="16dp"
+        android:importantForAccessibility="no"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_diamondsLabel"
+        app:layout_constraintStart_toEndOf="@+id/cardView_playerSkin"
+        app:layout_constraintTop_toTopOf="@+id/textView_diamondsLabel"
+        app:srcCompat="@drawable/diamond_icon" />
+
+    <TextView
+        android:id="@+id/textView_diamondsLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:fontFamily="@font/minecraft_ten"
+        android:labelFor="@id/textView_diamonds"
+        android:text="@string/diamonds_label"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView_emeraldsLabel"
+        app:layout_constraintStart_toEndOf="@+id/imageView_diamondIcon"
+        app:layout_constraintTop_toBottomOf="@+id/textView_goldLabel" />
+
+    <TextView
+        android:id="@+id/textView_diamonds"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView_diamondsLabel"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+        app:layout_constraintStart_toEndOf="@+id/textView_diamondsLabel"
+        tools:text="DIAMONDS" />
+
+    <ImageView
+        android:id="@+id/imageView_emeraldIcon"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="16dp"
+        android:importantForAccessibility="no"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_emeraldsLabel"
+        app:layout_constraintStart_toEndOf="@+id/cardView_playerSkin"
+        app:layout_constraintTop_toTopOf="@+id/textView_emeraldsLabel"
+        app:srcCompat="@drawable/emerald_icon" />
+
+    <TextView
+        android:id="@+id/textView_emeraldsLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:fontFamily="@font/minecraft_ten"
+        android:labelFor="@id/textView_emeralds"
+        android:text="@string/emeralds_label"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/cardView_playerSkin"
+        app:layout_constraintStart_toEndOf="@+id/imageView_emeraldIcon"
+        app:layout_constraintTop_toBottomOf="@+id/textView_diamondsLabel" />
+
+    <TextView
+        android:id="@+id/textView_emeralds"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView_emeraldsLabel"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/cardView_playerSkin"
-        app:layout_constraintTop_toBottomOf="@+id/textView_expProgress"
-        tools:text="[64☆] [▪ ▪ ▪ ▪ ▪ ▪ ▪ ▪ ▪ ] [65☆]" />
+        app:layout_constraintStart_toEndOf="@+id/textView_emeraldsLabel"
+        tools:text="EMERALDS" />
 
     <Spinner
-        android:id="@+id/spinner_mode"
+        android:id="@+id/spinner_modeSelect"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:background="#FFCDD2"
-        android:spinnerMode="dropdown"
+        android:layout_height="48dp"
+        android:popupBackground="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/cardView_fkdr"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
-        app:layout_constraintTop_toBottomOf="@+id/cardView_playerSkin" />
-
-    <!-- KDR -->
+        app:layout_constraintTop_toBottomOf="@+id/cardView_playerSkin"
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView_kdr"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_height="0dp"
         app:cardBackgroundColor="#FFFFFF"
         app:cardCornerRadius="16dp"
         app:cardElevation="2dp"
@@ -140,10 +306,10 @@
         app:contentPaddingLeft="16dp"
         app:contentPaddingRight="16dp"
         app:contentPaddingTop="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/cardView_fkdr"
         app:layout_constraintEnd_toStartOf="@+id/cardView_fkdr"
-        app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_mode">
+        app:layout_constraintTop_toTopOf="@+id/cardView_fkdr">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -154,19 +320,19 @@
             <TextView
                 android:id="@+id/textView_kdrLabel"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/minecraft_ten"
                 android:gravity="center"
-                android:labelFor="@id/textView_kdrValue"
+                android:labelFor="@id/textView_kdr"
                 android:text="@string/kdr_label"
                 android:textAlignment="center"
                 android:textAllCaps="false"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/textView_kdrValue"
+                android:id="@+id/textView_kdr"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textAlignment="center"
                 android:textSize="32sp"
@@ -180,7 +346,7 @@
         android:id="@+id/cardView_kills"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
+        app:cardBackgroundColor="#F5FFF5"
         app:cardCornerRadius="16dp"
         app:cardElevation="2dp"
         app:contentPaddingBottom="8dp"
@@ -188,9 +354,9 @@
         app:contentPaddingRight="16dp"
         app:contentPaddingTop="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/cardView_finalKills"
-        app:layout_constraintEnd_toEndOf="@+id/cardView_kdr"
-        app:layout_constraintStart_toStartOf="@+id/cardView_kdr"
-        app:layout_constraintTop_toBottomOf="@+id/cardView_kdr">
+        app:layout_constraintEnd_toStartOf="@+id/cardView_finalKills"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left"
+        app:layout_constraintTop_toTopOf="@+id/cardView_finalKills">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -200,32 +366,27 @@
                 android:id="@+id/textView_killsLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:labelFor="@id/textView_killsValue"
+                android:fontFamily="@font/minecraft_ten"
+                android:labelFor="@id/textView_kills"
                 android:text="@string/kills_label"
-                android:textSize="15sp"
-                android:textStyle="bold"
+                android:textColor="@color/dark_green"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/textView_killsValue"
-                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toStartOf="@+id/textView_kills"
                 app:layout_constraintHorizontal_chainStyle="spread_inside"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.5" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView_killsValue"
+                android:id="@+id/textView_kills"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textAlignment="center"
+                android:textColor="@color/dark_green"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/textView_killsLabel"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.5"
                 tools:text="1234" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -236,7 +397,7 @@
         android:id="@+id/cardView_deaths"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
+        app:cardBackgroundColor="#FFF5F5"
         app:cardCornerRadius="16dp"
         app:cardElevation="2dp"
         app:contentPaddingBottom="8dp"
@@ -244,10 +405,9 @@
         app:contentPaddingRight="16dp"
         app:contentPaddingTop="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/cardView_finalDeaths"
-        app:layout_constraintEnd_toEndOf="@+id/cardView_kdr"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/cardView_kdr"
-        app:layout_constraintTop_toBottomOf="@+id/cardView_kills">
+        app:layout_constraintEnd_toStartOf="@+id/cardView_finalDeaths"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left"
+        app:layout_constraintTop_toTopOf="@+id/cardView_finalDeaths">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -257,45 +417,39 @@
                 android:id="@+id/textView_deathsLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:labelFor="@id/textView_deathsValue"
+                android:fontFamily="@font/minecraft_ten"
+                android:labelFor="@id/textView_deaths"
                 android:text="@string/deaths_label"
-                android:textAlignment="center"
-                android:textSize="15sp"
-                android:textStyle="bold"
+                android:textColor="@color/dark_red"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/textView_deathsValue"
-                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toStartOf="@+id/textView_deaths"
                 app:layout_constraintHorizontal_chainStyle="spread_inside"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.5" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView_deathsValue"
+                android:id="@+id/textView_deaths"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textAlignment="center"
+                android:textColor="@color/dark_red"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/textView_deathsLabel"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.5"
                 tools:text="1234" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
 
-    <!-- FKDR -->
-
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView_fkdr"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
         app:cardBackgroundColor="#FFFFFF"
         app:cardCornerRadius="16dp"
         app:cardElevation="2dp"
@@ -303,9 +457,10 @@
         app:contentPaddingLeft="16dp"
         app:contentPaddingRight="16dp"
         app:contentPaddingTop="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/cardView_kdr"
+        app:layout_constraintBottom_toTopOf="@+id/cardView_finalKills"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
-        app:layout_constraintStart_toEndOf="@+id/cardView_kdr">
+        app:layout_constraintStart_toEndOf="@+id/cardView_kdr"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_modeSelect">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -314,21 +469,21 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView_labelFKDR"
+                android:id="@+id/textView_fkdrLabel"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/minecraft_ten"
                 android:gravity="center"
-                android:labelFor="@id/textView_valueFKDR"
+                android:labelFor="@id/textView_fkdr"
                 android:text="@string/fkdr_label"
                 android:textAlignment="center"
                 android:textAllCaps="false"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/textView_valueFKDR"
+                android:id="@+id/textView_fkdr"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textAlignment="center"
                 android:textSize="32sp"
@@ -342,15 +497,18 @@
         android:id="@+id/cardView_finalKills"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
+        app:cardBackgroundColor="#F5FFF5"
         app:cardCornerRadius="16dp"
         app:cardElevation="2dp"
         app:contentPaddingBottom="8dp"
         app:contentPaddingLeft="16dp"
         app:contentPaddingRight="16dp"
         app:contentPaddingTop="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/cardView_fkdr"
-        app:layout_constraintStart_toStartOf="@+id/cardView_fkdr"
+        app:layout_constraintBottom_toTopOf="@+id/cardView_finalDeaths"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+        app:layout_constraintStart_toEndOf="@+id/cardView_kills"
         app:layout_constraintTop_toBottomOf="@+id/cardView_fkdr">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -361,31 +519,27 @@
                 android:id="@+id/textView_finalKillsLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:labelFor="@id/textView_finalKillsValue"
+                android:fontFamily="@font/minecraft_ten"
+                android:labelFor="@id/textView_finalKills"
                 android:text="@string/final_kills_label"
-                android:textSize="15sp"
-                android:textStyle="bold"
+                android:textColor="@color/dark_green"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/textView_finalKillsValue"
-                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toStartOf="@+id/textView_finalKills"
                 app:layout_constraintHorizontal_chainStyle="spread_inside"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.5" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView_finalKillsValue"
+                android:id="@+id/textView_finalKills"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textAlignment="center"
+                android:textColor="@color/dark_green"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/textView_finalKillsLabel"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.5"
                 tools:text="1234" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -396,16 +550,18 @@
         android:id="@+id/cardView_finalDeaths"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        app:cardBackgroundColor="#FFF5F5"
         app:cardCornerRadius="16dp"
         app:cardElevation="2dp"
         app:contentPaddingBottom="8dp"
         app:contentPaddingLeft="16dp"
         app:contentPaddingRight="16dp"
         app:contentPaddingTop="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/cardView_fkdr"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/cardView_fkdr"
+        app:layout_constraintBottom_toTopOf="@+id/cardView_bblr"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+        app:layout_constraintStart_toEndOf="@+id/cardView_deaths"
         app:layout_constraintTop_toBottomOf="@+id/cardView_finalKills">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -416,45 +572,37 @@
                 android:id="@+id/textView_finalDeathsLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:labelFor="@id/textView_finalDeathsValue"
+                android:fontFamily="@font/minecraft_ten"
+                android:labelFor="@id/textView_finalDeaths"
                 android:text="@string/final_deaths_label"
-                android:textSize="15sp"
-                android:textStyle="bold"
+                android:textColor="@color/dark_red"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/textView_finalDeathsValue"
-                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toStartOf="@+id/textView_finalDeaths"
                 app:layout_constraintHorizontal_chainStyle="spread_inside"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.5" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView_finalDeathsValue"
+                android:id="@+id/textView_finalDeaths"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textAlignment="center"
+                android:textColor="@color/dark_red"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/textView_finalDeathsLabel"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.5"
                 tools:text="1234" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
 
-    <!-- WLR -->
-
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView_wlr"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_height="0dp"
         app:cardBackgroundColor="#FFFFFF"
         app:cardCornerRadius="16dp"
         app:cardElevation="2dp"
@@ -462,10 +610,10 @@
         app:contentPaddingLeft="16dp"
         app:contentPaddingRight="16dp"
         app:contentPaddingTop="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/cardView_bblr"
         app:layout_constraintEnd_toStartOf="@+id/cardView_bblr"
-        app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
-        app:layout_constraintTop_toBottomOf="@+id/cardView_deaths">
+        app:layout_constraintTop_toTopOf="@+id/cardView_bblr">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -476,19 +624,18 @@
             <TextView
                 android:id="@+id/textView_wlrLabel"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/minecraft_ten"
                 android:gravity="center"
-                android:labelFor="@id/textView_wlrValue"
+                android:labelFor="@id/textView_wlr"
                 android:text="@string/wlr_label"
                 android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/textView_wlrValue"
+                android:id="@+id/textView_wlr"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textAlignment="center"
                 android:textSize="32sp"
@@ -502,7 +649,7 @@
         android:id="@+id/cardView_wins"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
+        app:cardBackgroundColor="#F5FFF5"
         app:cardCornerRadius="16dp"
         app:cardElevation="2dp"
         app:contentPaddingBottom="8dp"
@@ -510,9 +657,9 @@
         app:contentPaddingRight="16dp"
         app:contentPaddingTop="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/cardView_bedsBroken"
-        app:layout_constraintEnd_toEndOf="@+id/cardView_wlr"
-        app:layout_constraintStart_toStartOf="@+id/cardView_wlr"
-        app:layout_constraintTop_toBottomOf="@+id/cardView_wlr">
+        app:layout_constraintEnd_toStartOf="@+id/cardView_bedsBroken"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left"
+        app:layout_constraintTop_toTopOf="@+id/cardView_bedsBroken">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -522,32 +669,27 @@
                 android:id="@+id/textView_winsLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:labelFor="@id/textView_winsValue"
+                android:fontFamily="@font/minecraft_ten"
+                android:labelFor="@id/textView_wins"
                 android:text="@string/wins_label"
-                android:textSize="15sp"
-                android:textStyle="bold"
+                android:textColor="@color/dark_green"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/textView_winsValue"
-                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toStartOf="@+id/textView_wins"
                 app:layout_constraintHorizontal_chainStyle="spread_inside"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.5" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView_winsValue"
+                android:id="@+id/textView_wins"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textAlignment="center"
+                android:textColor="@color/dark_green"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/textView_winsLabel"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.5"
                 tools:text="1234" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -558,7 +700,7 @@
         android:id="@+id/cardView_losses"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
+        app:cardBackgroundColor="#FFF5F5"
         app:cardCornerRadius="16dp"
         app:cardElevation="2dp"
         app:contentPaddingBottom="8dp"
@@ -566,9 +708,9 @@
         app:contentPaddingRight="16dp"
         app:contentPaddingTop="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/cardView_bedsLost"
-        app:layout_constraintEnd_toEndOf="@+id/cardView_wlr"
-        app:layout_constraintStart_toStartOf="@+id/cardView_wlr"
-        app:layout_constraintTop_toBottomOf="@+id/cardView_wins">
+        app:layout_constraintEnd_toStartOf="@+id/cardView_bedsLost"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left"
+        app:layout_constraintTop_toTopOf="@+id/cardView_bedsLost">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -578,45 +720,39 @@
                 android:id="@+id/textView_lossesLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:labelFor="@id/textView_lossesValue"
+                android:fontFamily="@font/minecraft_ten"
+                android:labelFor="@id/textView_losses"
                 android:text="@string/losses_label"
-                android:textAlignment="center"
-                android:textSize="15sp"
-                android:textStyle="bold"
+                android:textColor="@color/dark_red"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/textView_lossesValue"
-                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toStartOf="@+id/textView_losses"
                 app:layout_constraintHorizontal_chainStyle="spread_inside"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.5" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView_lossesValue"
+                android:id="@+id/textView_losses"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textAlignment="center"
+                android:textColor="@color/dark_red"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/textView_lossesLabel"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.5"
                 tools:text="1234" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
 
-    <!-- BBLR -->
-
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView_bblr"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
         app:cardBackgroundColor="#FFFFFF"
         app:cardCornerRadius="16dp"
         app:cardElevation="2dp"
@@ -624,9 +760,10 @@
         app:contentPaddingLeft="16dp"
         app:contentPaddingRight="16dp"
         app:contentPaddingTop="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/cardView_wlr"
+        app:layout_constraintBottom_toTopOf="@+id/cardView_bedsBroken"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
-        app:layout_constraintStart_toEndOf="@+id/cardView_wlr">
+        app:layout_constraintStart_toEndOf="@+id/cardView_wlr"
+        app:layout_constraintTop_toBottomOf="@+id/cardView_finalDeaths">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -635,21 +772,21 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView_labelBBLR"
+                android:id="@+id/textView_bblrLabel"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/minecraft_ten"
                 android:gravity="center"
-                android:labelFor="@id/textView_valueBBLR"
+                android:labelFor="@id/textView_bblr"
                 android:text="@string/bblr_label"
                 android:textAlignment="center"
                 android:textAllCaps="false"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/textView_valueBBLR"
+                android:id="@+id/textView_bblr"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textAlignment="center"
                 android:textSize="32sp"
@@ -659,20 +796,22 @@
 
     </androidx.cardview.widget.CardView>
 
-
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView_bedsBroken"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
+        app:cardBackgroundColor="#F5FFF5"
         app:cardCornerRadius="16dp"
         app:cardElevation="2dp"
         app:contentPaddingBottom="8dp"
         app:contentPaddingLeft="16dp"
         app:contentPaddingRight="16dp"
         app:contentPaddingTop="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/cardView_bblr"
-        app:layout_constraintStart_toStartOf="@+id/cardView_bblr"
+        app:layout_constraintBottom_toTopOf="@+id/cardView_bedsLost"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+        app:layout_constraintStart_toEndOf="@+id/cardView_wins"
         app:layout_constraintTop_toBottomOf="@+id/cardView_bblr">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -683,31 +822,27 @@
                 android:id="@+id/textView_bedsBrokenLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:labelFor="@id/textView_bedsBrokenValue"
+                android:fontFamily="@font/minecraft_ten"
+                android:labelFor="@id/textView_bedsBroken"
                 android:text="@string/beds_broken_label"
-                android:textSize="15sp"
-                android:textStyle="bold"
+                android:textColor="@color/dark_green"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/textView_bedsBrokenValue"
-                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toStartOf="@+id/textView_bedsBroken"
                 app:layout_constraintHorizontal_chainStyle="spread_inside"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.5" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView_bedsBrokenValue"
+                android:id="@+id/textView_bedsBroken"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textAlignment="center"
+                android:textColor="@color/dark_green"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/textView_bedsBrokenLabel"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.5"
                 tools:text="1234" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -718,16 +853,17 @@
         android:id="@+id/cardView_bedsLost"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        app:cardBackgroundColor="#FFF5F5"
         app:cardCornerRadius="16dp"
         app:cardElevation="2dp"
         app:contentPaddingBottom="8dp"
         app:contentPaddingLeft="16dp"
         app:contentPaddingRight="16dp"
         app:contentPaddingTop="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/cardView_bblr"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/cardView_bblr"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_bottom"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+        app:layout_constraintStart_toEndOf="@+id/cardView_losses"
         app:layout_constraintTop_toBottomOf="@+id/cardView_bedsBroken">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -738,35 +874,32 @@
                 android:id="@+id/textView_bedsLostLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:labelFor="@id/textView_bedsLostValue"
+                android:fontFamily="@font/minecraft_ten"
+                android:labelFor="@id/textView_bedsLost"
                 android:text="@string/beds_lost"
-                android:textSize="15sp"
-                android:textStyle="bold"
+                android:textColor="@color/dark_red"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/textView_bedsLostValue"
-                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toStartOf="@+id/textView_bedsLost"
                 app:layout_constraintHorizontal_chainStyle="spread_inside"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.5" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView_bedsLostValue"
+                android:id="@+id/textView_bedsLost"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textAlignment="center"
+                android:textColor="@color/dark_red"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/textView_bedsLostLabel"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.5"
                 tools:text="1234" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

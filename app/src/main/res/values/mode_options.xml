@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="modes_array">
+    <string-array name="mode_options">
         <item>Overall</item>
         <item>Solo</item>
         <item>Doubles</item>

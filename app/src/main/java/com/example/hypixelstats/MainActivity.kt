@@ -14,7 +14,7 @@ import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
     companion object {
-        const val EXTRA_PLAYER = "playeyyeryeyryerrrrrr"
+        const val EXTRA_PLAYER = "com.example.hypixelstats.PLAYER"
     }
 
     private lateinit var binding: ActivityMainBinding
@@ -32,34 +32,35 @@ class MainActivity : AppCompatActivity() {
 
         binding.buttonMainSearch.setOnClickListener {
             val searchPlayer = binding.editTextMainSearchPlayer.text.toString().trim()
-            binding.buttonMainSearch.isEnabled = false
-
-            val mojangService = RetrofitHelper.getInstanceMojangAPI().create(MojangService::class.java)
-            val mojangCall = mojangService.queryUsername(searchPlayer)
-            mojangCall.enqueue(object : Callback<Player> {
-                override fun onResponse(call: Call<Player?>, response: Response<Player?>) {
-                    binding.buttonMainSearch.isEnabled = true
-                    if (!response.isSuccessful) {
-                        Toast.makeText(this@MainActivity, "Request failed (${response.code()})", Toast.LENGTH_SHORT).show()
-                        return
-                    }
-
-                    val player = response.body()
-                    if (player != null) {
-                        goToDetailPage(player)
-                    } else {
-                        Toast.makeText(this@MainActivity, "Player not found", Toast.LENGTH_SHORT).show()
-                    }
-                }
-
-                override fun onFailure(call: Call<Player?>, t: Throwable) {
-                    binding.buttonMainSearch.isEnabled = true
-                    Toast.makeText(this@MainActivity, "Network error: ${t.localizedMessage ?: "unknown"}", Toast.LENGTH_SHORT).show()
-                }
-            })
+            if (!searchPlayer.isEmpty()) {
+                binding.buttonMainSearch.isEnabled = false
+                loadMinecraftPlayer(searchPlayer)
+            }
         }
+    }
 
+    private fun loadMinecraftPlayer(name: String) {
+        val mojangService = RetrofitHelper.getInstanceMojangAPI().create(MojangService::class.java)
+        val mojangCall = mojangService.queryUsername(name)
+        mojangCall.enqueue(object : Callback<Player> {
+            override fun onResponse(call: Call<Player>, response: Response<Player>) {
+                val player = response.body()
+                if (response.isSuccessful && player != null) {
+                    handlePlayerResponse(player)
+                } else {
+                    Toast.makeText(this@MainActivity, "Failed to load player", Toast.LENGTH_SHORT).show()
+                }
+            }
 
+            override fun onFailure(call: Call<Player>, t: Throwable) {
+                Toast.makeText(this@MainActivity, "Network error: ${t.message}", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun handlePlayerResponse(player: Player) {
+        binding.buttonMainSearch.isEnabled = true
+        goToDetailPage(player)
     }
 
     private fun goToDetailPage(player: Player) {

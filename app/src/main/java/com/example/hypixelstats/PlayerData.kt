@@ -7,17 +7,26 @@ data class PlayerData(
 ) {
     data class HypixelPlayer(
         @SerializedName("displayname") val displayName: String,
-        @SerializedName("playername") val playerName: String,
-        val stats: Statistics,
-        @SerializedName("networkExp") val networkExperience: Double,
+        val stats: HypixelStatistics,
         val karma: Int,
-        @SerializedName("newPackageRank") val rank: String,
+
+        // Rank information (not always present)
+        val packageRank: String? = null,
+        val newPackageRank: String? = null,
+        val monthlyPackageRank: String? = null,
+        val rankPlusColor: String? = null,
+        val monthlyRankColor: String? = null,
+        val rank: String? = null,
+        val prefix: String? = null
     )
 
-    data class Statistics(
+    data class HypixelStatistics(
         @SerializedName("Bedwars") val bedwars: BedwarsStatistics
     ) {
         data class BedwarsStatistics(
+            @SerializedName("Experience") val experience: Int,
+            @SerializedName("coins") val tokens: Int,
+
             // Overall
             @SerializedName("wins_bedwars") val overallWins: Int,
             @SerializedName("losses_bedwars") val overallLosses: Int,
