@@ -8,10 +8,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import coil3.load
 import com.example.hypixelstats.databinding.ActivityDetailBinding
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -23,7 +23,7 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private lateinit var binding: ActivityDetailBinding
-    private lateinit var statistics: Statistics
+    private lateinit var stats: Statistics
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +41,6 @@ class DetailActivity : AppCompatActivity() {
 //        val tagString = tagComponents.joinToString("") { "§${it.colorCode}${it.text}" }
 //        binding.textViewPlayerName.text = tagString + data.player.displayName
 
-        setupModeSpinner()
 
         val player = intent.getParcelableExtra(MainActivity.EXTRA_PLAYER, Player::class.java)
         if (player != null) {
@@ -55,7 +54,7 @@ class DetailActivity : AppCompatActivity() {
 
     private fun loadSkin(uuid: String) {
         val url = "https://starlightskins.lunareclipse.studio/render/default/$uuid/bust"
-        binding.imageViewPlayerSkin.load(url)
+        Picasso.get().load(url).into(binding.imageViewPlayerSkin)
     }
 
     private fun loadHypixelPlayerData(uuid: String) {
@@ -65,7 +64,8 @@ class DetailActivity : AppCompatActivity() {
             override fun onResponse(call: Call<PlayerData>, response: Response<PlayerData>) {
                 val body = response.body()
                 if (response.isSuccessful && body != null) {
-                    statistics = Statistics.from(body)
+                    stats = Statistics.from(body)
+                    setupModeSpinner()
                     handlePlayerDataResponse()
                 } else {
                     Toast.makeText(this@DetailActivity, "Failed to load player stats", Toast.LENGTH_SHORT).show()
@@ -79,8 +79,13 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun handlePlayerDataResponse() {
-        binding.textViewPlayerName.text = statistics.displayName
-        binding.textViewLevel.text = statistics.level.toString()
+        binding.textViewPlayerName.text = stats.displayName
+        binding.textViewLevel.text = stats.level.toString()
+
+        binding.textViewIron.text = stats.iron.toString()
+        binding.textViewGold.text = stats.gold.toString()
+        binding.textViewDiamonds.text = stats.diamonds.toString()
+        binding.textViewEmeralds.text = stats.emeralds.toString()
 
         showStatsForMode(0)
     }
@@ -100,14 +105,30 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun showStatsForMode(index: Int) {
-        val mode = when (index) {
-            0 -> statistics.overall
-            1 -> statistics.solo
-            2 -> statistics.doubles
-            3 -> statistics.threes
-            4 -> statistics.fours
-            else -> return
+        val modes = listOf(
+            stats.overall,
+            stats.solo,
+            stats.doubles,
+            stats.threes,
+            stats.fours,
+            stats.core,
+            stats.fours2,
+            stats.rush,
+            stats.ultimate,
+            stats.castle,
+            stats.voidless,
+            stats.armed,
+            stats.lucky,
+            stats.swap,
+            stats.oneblock
+        )
+
+        if (index !in 0..modes.size - 1) {
+            Toast.makeText(this, "Error selecting mode", Toast.LENGTH_SHORT).show()
+            return
         }
+
+        val mode = modes[index]
 
         binding.textViewKills.text = mode.kills.toString()
         binding.textViewDeaths.text = mode.deaths.toString()

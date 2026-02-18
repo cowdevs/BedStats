@@ -5,15 +5,15 @@
         <item>Doubles</item>
         <item>Threes</item>
         <item>Fours</item>
-        <item>Core</item>
+        <item>Core Only</item>
         <item>4v4</item>
         <item>Rush</item>
         <item>Ultimate</item>
         <item>Castle</item>
         <item>Voidless</item>
         <item>Armed</item>
-        <item>Lucky Blocks</item>
+        <item>Lucky</item>
         <item>Swap</item>
-        <item>One Block</item>
+        <item>OneBlock</item>
     </string-array>
 </resources>

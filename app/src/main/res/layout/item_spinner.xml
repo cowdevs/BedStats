@@ -4,7 +4,7 @@
     android:id="@+id/textView_item_modeSelect"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:fontFamily="@font/minecraft_ten"
+    android:fontFamily="@font/minecraft_seven"
     android:textAlignment="viewStart"
     android:textSize="20sp"
     tools:text="Overall" />
