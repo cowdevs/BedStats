@@ -92,6 +92,25 @@ data class PlayerData(
             @SerializedName("two_four_beds_broken_bedwars") val bedsBrokenTwoFour: Int,
             @SerializedName("two_four_beds_lost_bedwars") val bedsLostTwoFour: Int,
 
+            // Armed
+            @SerializedName("eight_two_armed_wins_bedwars") val winsEightTwoArmed: Int,
+            @SerializedName("eight_two_armed_losses_bedwars") val lossesEightTwoArmed: Int,
+            @SerializedName("eight_two_armed_final_kills_bedwars") val finalKillsEightTwoArmed: Int,
+            @SerializedName("eight_two_armed_final_deaths_bedwars") val finalDeathsEightTwoArmed: Int,
+            @SerializedName("eight_two_armed_kills_bedwars") val killsEightTwoArmed: Int,
+            @SerializedName("eight_two_armed_deaths_bedwars") val deathsEightTwoArmed: Int,
+            @SerializedName("eight_two_armed_beds_broken_bedwars") val bedsBrokenEightTwoArmed: Int,
+            @SerializedName("eight_two_armed_beds_lost_bedwars") val bedsLostEightTwoArmed: Int,
+
+            @SerializedName("four_four_armed_wins_bedwars") val winsFourFourArmed: Int,
+            @SerializedName("four_four_armed_losses_bedwars") val lossesFourFourArmed: Int,
+            @SerializedName("four_four_armed_final_kills_bedwars") val finalKillsFourFourArmed: Int,
+            @SerializedName("four_four_armed_final_deaths_bedwars") val finalDeathsFourFourArmed: Int,
+            @SerializedName("four_four_armed_kills_bedwars") val killsFourFourArmed: Int,
+            @SerializedName("four_four_armed_deaths_bedwars") val deathsFourFourArmed: Int,
+            @SerializedName("four_four_armed_beds_broken_bedwars") val bedsBrokenFourFourArmed: Int,
+            @SerializedName("four_four_armed_beds_lost_bedwars") val bedsLostFourFourArmed: Int,
+
             // Castle
             @SerializedName("castle_wins_bedwars") val winsCastle: Int,
             @SerializedName("castle_losses_bedwars") val lossesCastle: Int,
@@ -101,6 +120,25 @@ data class PlayerData(
             @SerializedName("castle_deaths_bedwars") val deathsCastle: Int,
             @SerializedName("castle_beds_broken_bedwars") val bedsBrokenCastle: Int,
             @SerializedName("castle_beds_lost_bedwars") val bedsLostCastle: Int,
+
+            // Lucky
+            @SerializedName("eight_two_lucky_wins_bedwars") val winsEightTwoLucky: Int,
+            @SerializedName("eight_two_lucky_losses_bedwars") val lossesEightTwoLucky: Int,
+            @SerializedName("eight_two_lucky_final_kills_bedwars") val finalKillsEightTwoLucky: Int,
+            @SerializedName("eight_two_lucky_final_deaths_bedwars") val finalDeathsEightTwoLucky: Int,
+            @SerializedName("eight_two_lucky_kills_bedwars") val killsEightTwoLucky: Int,
+            @SerializedName("eight_two_lucky_deaths_bedwars") val deathsEightTwoLucky: Int,
+            @SerializedName("eight_two_lucky_beds_broken_bedwars") val bedsBrokenEightTwoLucky: Int,
+            @SerializedName("eight_two_lucky_beds_lost_bedwars") val bedsLostEightTwoLucky: Int,
+
+            @SerializedName("four_four_lucky_wins_bedwars") val winsFourFourLucky: Int,
+            @SerializedName("four_four_lucky_losses_bedwars") val lossesFourFourLucky: Int,
+            @SerializedName("four_four_lucky_final_kills_bedwars") val finalKillsFourFourLucky: Int,
+            @SerializedName("four_four_lucky_final_deaths_bedwars") val finalDeathsFourFourLucky: Int,
+            @SerializedName("four_four_lucky_kills_bedwars") val killsFourFourLucky: Int,
+            @SerializedName("four_four_lucky_deaths_bedwars") val deathsFourFourLucky: Int,
+            @SerializedName("four_four_lucky_beds_broken_bedwars") val bedsBrokenFourFourLucky: Int,
+            @SerializedName("four_four_lucky_beds_lost_bedwars") val bedsLostFourFourLucky: Int,
 
             // Rush
             @SerializedName("eight_one_rush_wins_bedwars") val winsEightOneRush: Int,
@@ -130,6 +168,25 @@ data class PlayerData(
             @SerializedName("four_four_rush_beds_broken_bedwars") val bedsBrokenFourFourRush: Int,
             @SerializedName("four_four_rush_beds_lost_bedwars") val bedsLostFourFourRush: Int,
 
+            // Swap
+            @SerializedName("eight_two_swap_wins_bedwars") val winsEightTwoSwap: Int,
+            @SerializedName("eight_two_swap_losses_bedwars") val lossesEightTwoSwap: Int,
+            @SerializedName("eight_two_swap_final_kills_bedwars") val finalKillsEightTwoSwap: Int,
+            @SerializedName("eight_two_swap_final_deaths_bedwars") val finalDeathsEightTwoSwap: Int,
+            @SerializedName("eight_two_swap_kills_bedwars") val killsEightTwoSwap: Int,
+            @SerializedName("eight_two_swap_deaths_bedwars") val deathsEightTwoSwap: Int,
+            @SerializedName("eight_two_swap_beds_broken_bedwars") val bedsBrokenEightTwoSwap: Int,
+            @SerializedName("eight_two_swap_beds_lost_bedwars") val bedsLostEightTwoSwap: Int,
+
+            @SerializedName("four_four_swap_wins_bedwars") val winsFourFourSwap: Int,
+            @SerializedName("four_four_swap_losses_bedwars") val lossesFourFourSwap: Int,
+            @SerializedName("four_four_swap_final_kills_bedwars") val finalKillsFourFourSwap: Int,
+            @SerializedName("four_four_swap_final_deaths_bedwars") val finalDeathsFourFourSwap: Int,
+            @SerializedName("four_four_swap_kills_bedwars") val killsFourFourSwap: Int,
+            @SerializedName("four_four_swap_deaths_bedwars") val deathsFourFourSwap: Int,
+            @SerializedName("four_four_swap_beds_broken_bedwars") val bedsBrokenFourFourSwap: Int,
+            @SerializedName("four_four_swap_beds_lost_bedwars") val bedsLostFourFourSwap: Int,
+
             // Ultimate
             @SerializedName("eight_one_ultimate_wins_bedwars") val winsEightOneUltimate: Int,
             @SerializedName("eight_one_ultimate_losses_bedwars") val lossesEightOneUltimate: Int,
@@ -158,6 +215,25 @@ data class PlayerData(
             @SerializedName("four_four_ultimate_beds_broken_bedwars") val bedsBrokenFourFourUltimate: Int,
             @SerializedName("four_four_ultimate_beds_lost_bedwars") val bedsLostFourFourUltimate: Int,
 
+            // Underworld
+            @SerializedName("eight_two_underworld_wins_bedwars") val winsEightTwoUnderworld: Int,
+            @SerializedName("eight_two_underworld_losses_bedwars") val lossesEightTwoUnderworld: Int,
+            @SerializedName("eight_two_underworld_final_kills_bedwars") val finalKillsEightTwoUnderworld: Int,
+            @SerializedName("eight_two_underworld_final_deaths_bedwars") val finalDeathsEightTwoUnderworld: Int,
+            @SerializedName("eight_two_underworld_kills_bedwars") val killsEightTwoUnderworld: Int,
+            @SerializedName("eight_two_underworld_deaths_bedwars") val deathsEightTwoUnderworld: Int,
+            @SerializedName("eight_two_underworld_beds_broken_bedwars") val bedsBrokenEightTwoUnderworld: Int,
+            @SerializedName("eight_two_underworld_beds_lost_bedwars") val bedsLostEightTwoUnderworld: Int,
+
+            @SerializedName("four_four_underworld_wins_bedwars") val winsFourFourUnderworld: Int,
+            @SerializedName("four_four_underworld_losses_bedwars") val lossesFourFourUnderworld: Int,
+            @SerializedName("four_four_underworld_final_kills_bedwars") val finalKillsFourFourUnderworld: Int,
+            @SerializedName("four_four_underworld_final_deaths_bedwars") val finalDeathsFourFourUnderworld: Int,
+            @SerializedName("four_four_underworld_kills_bedwars") val killsFourFourUnderworld: Int,
+            @SerializedName("four_four_underworld_deaths_bedwars") val deathsFourFourUnderworld: Int,
+            @SerializedName("four_four_underworld_beds_broken_bedwars") val bedsBrokenFourFourUnderworld: Int,
+            @SerializedName("four_four_underworld_beds_lost_bedwars") val bedsLostFourFourUnderworld: Int,
+
             // Voidless
             @SerializedName("eight_two_voidless_wins_bedwars") val winsEightTwoVoidless: Int,
             @SerializedName("eight_two_voidless_losses_bedwars") val lossesEightTwoVoidless: Int,
@@ -176,63 +252,6 @@ data class PlayerData(
             @SerializedName("four_four_voidless_deaths_bedwars") val deathsFourFourVoidless: Int,
             @SerializedName("four_four_voidless_beds_broken_bedwars") val bedsBrokenFourFourVoidless: Int,
             @SerializedName("four_four_voidless_beds_lost_bedwars") val bedsLostFourFourVoidless: Int,
-
-            // Armed
-            @SerializedName("eight_two_armed_wins_bedwars") val winsEightTwoArmed: Int,
-            @SerializedName("eight_two_armed_losses_bedwars") val lossesEightTwoArmed: Int,
-            @SerializedName("eight_two_armed_final_kills_bedwars") val finalKillsEightTwoArmed: Int,
-            @SerializedName("eight_two_armed_final_deaths_bedwars") val finalDeathsEightTwoArmed: Int,
-            @SerializedName("eight_two_armed_kills_bedwars") val killsEightTwoArmed: Int,
-            @SerializedName("eight_two_armed_deaths_bedwars") val deathsEightTwoArmed: Int,
-            @SerializedName("eight_two_armed_beds_broken_bedwars") val bedsBrokenEightTwoArmed: Int,
-            @SerializedName("eight_two_armed_beds_lost_bedwars") val bedsLostEightTwoArmed: Int,
-
-            @SerializedName("four_four_armed_wins_bedwars") val winsFourFourArmed: Int,
-            @SerializedName("four_four_armed_losses_bedwars") val lossesFourFourArmed: Int,
-            @SerializedName("four_four_armed_final_kills_bedwars") val finalKillsFourFourArmed: Int,
-            @SerializedName("four_four_armed_final_deaths_bedwars") val finalDeathsFourFourArmed: Int,
-            @SerializedName("four_four_armed_kills_bedwars") val killsFourFourArmed: Int,
-            @SerializedName("four_four_armed_deaths_bedwars") val deathsFourFourArmed: Int,
-            @SerializedName("four_four_armed_beds_broken_bedwars") val bedsBrokenFourFourArmed: Int,
-            @SerializedName("four_four_armed_beds_lost_bedwars") val bedsLostFourFourArmed: Int,
-            
-            // Lucky
-            @SerializedName("eight_two_lucky_wins_bedwars") val winsEightTwoLucky: Int,
-            @SerializedName("eight_two_lucky_losses_bedwars") val lossesEightTwoLucky: Int,
-            @SerializedName("eight_two_lucky_final_kills_bedwars") val finalKillsEightTwoLucky: Int,
-            @SerializedName("eight_two_lucky_final_deaths_bedwars") val finalDeathsEightTwoLucky: Int,
-            @SerializedName("eight_two_lucky_kills_bedwars") val killsEightTwoLucky: Int,
-            @SerializedName("eight_two_lucky_deaths_bedwars") val deathsEightTwoLucky: Int,
-            @SerializedName("eight_two_lucky_beds_broken_bedwars") val bedsBrokenEightTwoLucky: Int,
-            @SerializedName("eight_two_lucky_beds_lost_bedwars") val bedsLostEightTwoLucky: Int,
-
-            @SerializedName("four_four_lucky_wins_bedwars") val winsFourFourLucky: Int,
-            @SerializedName("four_four_lucky_losses_bedwars") val lossesFourFourLucky: Int,
-            @SerializedName("four_four_lucky_final_kills_bedwars") val finalKillsFourFourLucky: Int,
-            @SerializedName("four_four_lucky_final_deaths_bedwars") val finalDeathsFourFourLucky: Int,
-            @SerializedName("four_four_lucky_kills_bedwars") val killsFourFourLucky: Int,
-            @SerializedName("four_four_lucky_deaths_bedwars") val deathsFourFourLucky: Int,
-            @SerializedName("four_four_lucky_beds_broken_bedwars") val bedsBrokenFourFourLucky: Int,
-            @SerializedName("four_four_lucky_beds_lost_bedwars") val bedsLostFourFourLucky: Int,
-
-            // Swap
-            @SerializedName("eight_two_swap_wins_bedwars") val winsEightTwoSwap: Int,
-            @SerializedName("eight_two_swap_losses_bedwars") val lossesEightTwoSwap: Int,
-            @SerializedName("eight_two_swap_final_kills_bedwars") val finalKillsEightTwoSwap: Int,
-            @SerializedName("eight_two_swap_final_deaths_bedwars") val finalDeathsEightTwoSwap: Int,
-            @SerializedName("eight_two_swap_kills_bedwars") val killsEightTwoSwap: Int,
-            @SerializedName("eight_two_swap_deaths_bedwars") val deathsEightTwoSwap: Int,
-            @SerializedName("eight_two_swap_beds_broken_bedwars") val bedsBrokenEightTwoSwap: Int,
-            @SerializedName("eight_two_swap_beds_lost_bedwars") val bedsLostEightTwoSwap: Int,
-
-            @SerializedName("four_four_swap_wins_bedwars") val winsFourFourSwap: Int,
-            @SerializedName("four_four_swap_losses_bedwars") val lossesFourFourSwap: Int,
-            @SerializedName("four_four_swap_final_kills_bedwars") val finalKillsFourFourSwap: Int,
-            @SerializedName("four_four_swap_final_deaths_bedwars") val finalDeathsFourFourSwap: Int,
-            @SerializedName("four_four_swap_kills_bedwars") val killsFourFourSwap: Int,
-            @SerializedName("four_four_swap_deaths_bedwars") val deathsFourFourSwap: Int,
-            @SerializedName("four_four_swap_beds_broken_bedwars") val bedsBrokenFourFourSwap: Int,
-            @SerializedName("four_four_swap_beds_lost_bedwars") val bedsLostFourFourSwap: Int,
 
             // One Block
             @SerializedName("eight_one_oneblock_wins_bedwars") val winsOneblock: Int,

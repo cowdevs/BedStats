@@ -1,19 +1,20 @@
 <resources>
     <string-array name="mode_options">
         <item>Overall</item>
+        <item>Core</item>
         <item>Solo</item>
         <item>Doubles</item>
         <item>Threes</item>
         <item>Fours</item>
-        <item>Core Only</item>
         <item>4v4</item>
-        <item>Rush</item>
-        <item>Ultimate</item>
-        <item>Castle</item>
-        <item>Voidless</item>
         <item>Armed</item>
+        <item>Castle</item>
         <item>Lucky</item>
+        <item>Rush</item>
         <item>Swap</item>
-        <item>OneBlock</item>
+        <item>Ultimate</item>
+        <item>Underworld</item>
+        <item>Voidless</item>
+        <item>One Block</item>
     </string-array>
 </resources>

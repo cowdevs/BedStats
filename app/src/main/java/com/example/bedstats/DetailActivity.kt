@@ -54,7 +54,7 @@ class DetailActivity : AppCompatActivity() {
         binding.textViewDiamonds.text = stats.diamonds.toString()
         binding.textViewEmeralds.text = stats.emeralds.toString()
 
-        showStatsForMode(0)
+        showStatsForMode("Overall")
     }
 
     private fun setupModeSpinner() {
@@ -64,38 +64,34 @@ class DetailActivity : AppCompatActivity() {
 
         binding.spinnerModeSelect.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: android.view.View?, position: Int, id: Long) {
-                showStatsForMode(position)
+                val selected = parent.getItemAtPosition(position).toString()
+                showStatsForMode(selected)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {}
         }
     }
 
-    private fun showStatsForMode(index: Int) {
-        val modes = listOf(
-            stats.overall,
-            stats.solo,
-            stats.doubles,
-            stats.threes,
-            stats.fours,
-            stats.core,
-            stats.fours2,
-            stats.rush,
-            stats.ultimate,
-            stats.castle,
-            stats.voidless,
-            stats.armed,
-            stats.lucky,
-            stats.swap,
-            stats.oneblock
-        )
-
-        if (index !in 0..<modes.size) {
-            Toast.makeText(this, "Error selecting mode", Toast.LENGTH_SHORT).show()
-            return
+    private fun showStatsForMode(selected: String) {
+        val mode = when (selected) {
+            "Overall" -> stats.overall
+            "Core" -> stats.core
+            "Solo" -> stats.solo
+            "Doubles" -> stats.doubles
+            "Threes" -> stats.threes
+            "Fours" -> stats.fours
+            "4v4" -> stats.fours2
+            "Armed" -> stats.armed
+            "Castle" -> stats.castle
+            "Lucky" -> stats.lucky
+            "Rush" -> stats.rush
+            "Swap" -> stats.swap
+            "Ultimate" -> stats.ultimate
+            "Underworld" -> stats.underworld
+            "Voidless" -> stats.voidless
+            "One Block" -> stats.oneblock
+            else -> return
         }
-
-        val mode = modes[index]
 
         binding.textViewKills.text = mode.kills.toString()
         binding.textViewDeaths.text = mode.deaths.toString()
