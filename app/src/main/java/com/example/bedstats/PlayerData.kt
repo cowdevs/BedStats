@@ -1,9 +1,9 @@
-package com.example.hypixelstats
+package com.example.bedstats
 
 import com.google.gson.annotations.SerializedName
 
 data class PlayerData(
-    val player: HypixelPlayer,
+    val player: HypixelPlayer?,
 ) {
     data class HypixelPlayer(
         @SerializedName("displayname") val displayName: String,
@@ -20,7 +20,7 @@ data class PlayerData(
     )
 
     data class HypixelStatistics(
-        @SerializedName("Bedwars") val bedwars: BedwarsStatistics
+        @SerializedName("Bedwars") val bedwars: BedwarsStatistics?
     ) {
         data class BedwarsStatistics(
             @SerializedName("Experience") val experience: Int,

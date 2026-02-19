@@ -1,4 +1,4 @@
-package com.example.hypixelstats
+package com.example.bedstats
 
 import retrofit2.Call
 import retrofit2.http.GET

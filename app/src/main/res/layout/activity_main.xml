@@ -21,7 +21,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/imageView_main_bedIcon"
         app:layout_constraintVertical_bias="0.5" />
 
     <EditText
@@ -49,18 +49,18 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:backgroundTint="@color/dark_green"
-        android:fontFamily="@font/minecraft_ten"
+        android:fontFamily="@font/minecraft_seven"
         android:insetTop="0dp"
         android:insetBottom="0dp"
         android:text="@string/search_button"
-        android:textSize="20sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/editText_main_searchPlayer"
         app:layout_constraintStart_toStartOf="@+id/editText_main_searchPlayer"
         app:layout_constraintTop_toBottomOf="@+id/editText_main_searchPlayer" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageView_main_bedIcon"
         android:layout_width="wrap_content"
         android:layout_height="67dp"
         android:adjustViewBounds="true"
@@ -72,4 +72,15 @@
         app:layout_constraintVertical_bias="0.67"
         app:layout_constraintVertical_chainStyle="packed"
         app:srcCompat="@drawable/red_bed" />
+
+    <ProgressBar
+        android:id="@+id/progressBar_main_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_main_search"
+        tools:visibility="visible" />
 </androidx.constraintlayout.widget.ConstraintLayout>

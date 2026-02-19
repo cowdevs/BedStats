@@ -1,5 +1,9 @@
-package com.example.hypixelstats
+package com.example.bedstats
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Statistics(
     val displayName: String,
     val level: Int,
@@ -24,7 +28,8 @@ data class Statistics(
     val lucky: ModeStatistics,
     val swap: ModeStatistics,
     val oneblock: ModeStatistics
-) {
+) : Parcelable {
+    @Parcelize
     data class ModeStatistics(
         val wins: Int,
         val losses: Int,
@@ -34,17 +39,17 @@ data class Statistics(
         val deaths: Int,
         val bedsBroken: Int,
         val bedsLost: Int
-    ) {
-        val kdr = calculateRatio(kills, deaths)
-        val fkdr = calculateRatio(finalKills, finalDeaths)
-        val wlr = calculateRatio(wins, losses)
-        val bblr = calculateRatio(bedsBroken, bedsLost)
+    ) : Parcelable {
+        val kdr get() = calculateRatio(kills, deaths)
+        val fkdr get() = calculateRatio(finalKills, finalDeaths)
+        val wlr get() = calculateRatio(wins, losses)
+        val bblr get() = calculateRatio(bedsBroken, bedsLost)
     }
 
     companion object {
-        fun from(playerData: PlayerData): Statistics {
-            val player = playerData.player
-            val bedwars = player.stats.bedwars
+        fun from(playerData: PlayerData): Statistics? {
+            val player = playerData.player ?: return null // No player data available
+            val bedwars = player.stats.bedwars ?: return null // No Bedwars stats available
 
             return Statistics(
                 displayName = player.displayName,

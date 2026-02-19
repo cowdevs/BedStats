@@ -22,6 +22,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "HypixelStats"
+rootProject.name = "BedStats"
 include(":app")
  

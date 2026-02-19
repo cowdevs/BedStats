@@ -1,5 +1,6 @@
-package com.example.hypixelstats
+package com.example.bedstats
 
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -8,20 +9,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.hypixelstats.databinding.ActivityDetailBinding
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
-import com.squareup.picasso.Picasso
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import java.util.Locale
+import com.example.bedstats.databinding.ActivityDetailBinding
+import kotlin.math.round
 
 class DetailActivity : AppCompatActivity() {
-    companion object {
-        const val TAG = "DetailActivity"
-    }
-
     private lateinit var binding: ActivityDetailBinding
     private lateinit var stats: Statistics
 
@@ -36,47 +27,23 @@ class DetailActivity : AppCompatActivity() {
             insets
         }
 
-//        val tagFormatter = TagFormatter()
-//        val tagComponents = tagFormatter.calcTag(data)
-//        val tagString = tagComponents.joinToString("") { "§${it.colorCode}${it.text}" }
-//        binding.textViewPlayerName.text = tagString + data.player.displayName
+        val statistics = intent.getParcelableExtra(MainActivity.EXTRA_STATISTICS, Statistics::class.java)
+        val skinBitmapBytes = intent.getByteArrayExtra(MainActivity.EXTRA_SKIN_BITMAP)
 
-
-        val player = intent.getParcelableExtra(MainActivity.EXTRA_PLAYER, Player::class.java)
-        if (player != null) {
-            loadSkin(player.id)
-            loadHypixelPlayerData(player.id)
+        if (statistics != null) {
+            stats = statistics
+            if (skinBitmapBytes != null) {
+                val bitmap = BitmapFactory.decodeByteArray(skinBitmapBytes, 0, skinBitmapBytes.size)
+                binding.imageViewPlayerSkin.setImageBitmap(bitmap)
+            }
+            setupModeSpinner()
+            handlePlayerDataResponse()
         } else {
             Toast.makeText(this, "Error retrieving player data", Toast.LENGTH_SHORT).show()
             finish()
         }
     }
 
-    private fun loadSkin(uuid: String) {
-        val url = "https://starlightskins.lunareclipse.studio/render/default/$uuid/bust"
-        Picasso.get().load(url).into(binding.imageViewPlayerSkin)
-    }
-
-    private fun loadHypixelPlayerData(uuid: String) {
-        val hypixelService = RetrofitHelper.getInstanceHypixelAPI().create(HypixelService::class.java)
-        val hypixelCall = hypixelService.getHypixelPlayerData(uuid)
-        hypixelCall.enqueue(object : Callback<PlayerData> {
-            override fun onResponse(call: Call<PlayerData>, response: Response<PlayerData>) {
-                val body = response.body()
-                if (response.isSuccessful && body != null) {
-                    stats = Statistics.from(body)
-                    setupModeSpinner()
-                    handlePlayerDataResponse()
-                } else {
-                    Toast.makeText(this@DetailActivity, "Failed to load player stats", Toast.LENGTH_SHORT).show()
-                }
-            }
-
-            override fun onFailure(call: Call<PlayerData>, t: Throwable) {
-                Toast.makeText(this@DetailActivity, "Network error: ${t.message}", Toast.LENGTH_SHORT).show()
-            }
-        })
-    }
 
     private fun handlePlayerDataResponse() {
         binding.textViewPlayerName.text = stats.displayName
@@ -123,7 +90,7 @@ class DetailActivity : AppCompatActivity() {
             stats.oneblock
         )
 
-        if (index !in 0..modes.size - 1) {
+        if (index !in 0..<modes.size) {
             Toast.makeText(this, "Error selecting mode", Toast.LENGTH_SHORT).show()
             return
         }
@@ -139,17 +106,14 @@ class DetailActivity : AppCompatActivity() {
         binding.textViewBedsBroken.text = mode.bedsBroken.toString()
         binding.textViewBedsLost.text = mode.bedsLost.toString()
 
-        binding.textViewKdr.text = String.format(Locale.US, "%.2f", mode.kdr)
-        binding.textViewFkdr.text = String.format(Locale.US, "%.2f", mode.fkdr)
-        binding.textViewWlr.text = String.format(Locale.US, "%.2f", mode.wlr)
-        binding.textViewBblr.text = String.format(Locale.US, "%.2f", mode.bblr)
-    }
+        val kdrRounded = round(mode.kdr * 100) / 100.0
+        val fkdrRounded = round(mode.fkdr * 100) / 100.0
+        val wlrRounded = round(mode.wlr * 100) / 100.0
+        val bblrRounded = round(mode.bblr * 100) / 100.0
 
-    private fun loadTestJSON(): PlayerData {
-        val gson = Gson()
-        val inputStream = resources.openRawResource(R.raw.test_recapp_)
-        val jsonString = inputStream.bufferedReader().use { it.readText() }
-        val type = object : TypeToken<PlayerData>() {}.type
-        return gson.fromJson(jsonString, type)
+        binding.textViewKdr.text = kdrRounded.toString()
+        binding.textViewFkdr.text = fkdrRounded.toString()
+        binding.textViewWlr.text = wlrRounded.toString()
+        binding.textViewBblr.text = bblrRounded.toString()
     }
 }

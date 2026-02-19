@@ -1,4 +1,4 @@
-package com.example.hypixelstats
+package com.example.bedstats
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

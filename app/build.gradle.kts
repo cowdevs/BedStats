@@ -8,13 +8,13 @@ plugins {
 }
 
 android {
-    namespace = "com.example.hypixelstats"
+    namespace = "com.example.bedstats"
     compileSdk {
         version = release(36)
     }
 
     defaultConfig {
-        applicationId = "com.example.hypixelstats"
+        applicationId = "com.example.bedstats"
         minSdk = 33
         targetSdk = 36
         versionCode = 1
