@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.bedstats.databinding.ActivityDetailBinding
+import java.util.Locale
 import kotlin.math.round
 
 class DetailActivity : AppCompatActivity() {
@@ -102,14 +103,18 @@ class DetailActivity : AppCompatActivity() {
         binding.textViewBedsBroken.text = mode.bedsBroken.toString()
         binding.textViewBedsLost.text = mode.bedsLost.toString()
 
-        val kdrRounded = round(mode.kdr * 100) / 100.0
-        val fkdrRounded = round(mode.fkdr * 100) / 100.0
-        val wlrRounded = round(mode.wlr * 100) / 100.0
-        val bblrRounded = round(mode.bblr * 100) / 100.0
+        binding.textViewKdr.text = formatRatio(mode.kdr)
+        binding.textViewFkdr.text = formatRatio(mode.fkdr)
+        binding.textViewWlr.text = formatRatio(mode.wlr)
+        binding.textViewBblr.text = formatRatio(mode.bblr)
+    }
 
-        binding.textViewKdr.text = kdrRounded.toString()
-        binding.textViewFkdr.text = fkdrRounded.toString()
-        binding.textViewWlr.text = wlrRounded.toString()
-        binding.textViewBblr.text = bblrRounded.toString()
+    private fun formatRatio(value: Double): String {
+        val rounded = round(value)
+        return if (rounded == value) {
+            rounded.toLong().toString()
+        } else {
+            String.format(Locale.ROOT, "%.2f", value)
+        }
     }
 }

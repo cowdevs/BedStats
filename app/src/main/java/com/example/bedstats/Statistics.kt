@@ -224,7 +224,7 @@ data class Statistics(
         }
 
         private fun calculateRatio(a: Int, b: Int): Double {
-            if (b == 0) return 0.0
+            if (b == 0) return a.toDouble()
             return a.toDouble() / b
         }
 
