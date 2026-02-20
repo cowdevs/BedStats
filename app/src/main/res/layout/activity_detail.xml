@@ -51,10 +51,10 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView_playerSkin"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        app:cardBackgroundColor="@color/gray"
+        app:cardBackgroundColor="#78A7FF"
         app:cardCornerRadius="16dp"
         app:cardElevation="2dp"
         app:contentPaddingLeft="8dp"
@@ -65,12 +65,12 @@
 
         <ImageView
             android:id="@+id/imageView_playerSkin"
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:importantForAccessibility="no"
-            android:scaleType="fitCenter"
-            app:srcCompat="@drawable/placeholder_skin" />
+            android:scaleType="fitEnd"
+            app:srcCompat="@drawable/placeholder" />
     </androidx.cardview.widget.CardView>
 
     <TextView
@@ -82,19 +82,10 @@
         android:labelFor="@id/textView_level"
         android:text="@string/level_label"
         android:textSize="14sp"
-        app:layout_constraintStart_toEndOf="@id/cardView_playerSkin"
-        app:layout_constraintTop_toTopOf="@+id/cardView_playerSkin" />
-
-    <TextView
-        android:id="@+id/textView_level"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:textSize="16sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView_levelLabel"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
-        app:layout_constraintStart_toEndOf="@+id/textView_levelLabel"
-        tools:text="LEVEL" />
+        app:layout_constraintBottom_toTopOf="@+id/textView_tokensLabel"
+        app:layout_constraintStart_toEndOf="@+id/cardView_playerSkin"
+        app:layout_constraintTop_toTopOf="@+id/cardView_playerSkin"
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <TextView
         android:id="@+id/textView_tokensLabel"
@@ -105,44 +96,23 @@
         android:labelFor="@id/textView_tokens"
         android:text="@string/tokens_label"
         android:textSize="14sp"
-        app:layout_constraintStart_toEndOf="@id/cardView_playerSkin"
+        app:layout_constraintBottom_toTopOf="@+id/textView_winstreakLabel"
+        app:layout_constraintStart_toEndOf="@+id/cardView_playerSkin"
         app:layout_constraintTop_toBottomOf="@+id/textView_levelLabel" />
-
-    <TextView
-        android:id="@+id/textView_tokens"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:textSize="16sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView_tokensLabel"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
-        app:layout_constraintStart_toEndOf="@+id/textView_tokensLabel"
-        tools:text="TOKENS" />
 
     <TextView
         android:id="@+id/textView_winstreakLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="16dp"
         android:fontFamily="@font/minecraft_ten"
         android:labelFor="@id/textView_winstreak"
         android:text="@string/winstreak_label"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/textView_ironLabel"
-        app:layout_constraintStart_toEndOf="@id/cardView_playerSkin"
-        app:layout_constraintTop_toBottomOf="@id/textView_tokensLabel" />
-
-    <TextView
-        android:id="@+id/textView_winstreak"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:textSize="16sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView_winstreakLabel"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
-        app:layout_constraintStart_toEndOf="@+id/textView_winstreakLabel"
-        tools:text="WINSTREAK" />
+        app:layout_constraintStart_toEndOf="@+id/cardView_playerSkin"
+        app:layout_constraintTop_toBottomOf="@+id/textView_tokensLabel" />
 
     <ImageView
         android:id="@+id/imageView_ironIcon"
@@ -167,17 +137,6 @@
         app:layout_constraintBottom_toTopOf="@+id/textView_goldLabel"
         app:layout_constraintStart_toEndOf="@+id/imageView_ironIcon"
         app:layout_constraintTop_toBottomOf="@+id/textView_winstreakLabel" />
-
-    <TextView
-        android:id="@+id/textView_iron"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:textSize="16sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView_ironLabel"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
-        app:layout_constraintStart_toEndOf="@+id/textView_ironLabel"
-        tools:text="IRON" />
 
     <ImageView
         android:id="@+id/imageView_goldIcon"
@@ -207,12 +166,61 @@
         android:id="@+id/textView_gold"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="8dp"
         android:textSize="16sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView_goldLabel"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textView_goldLabel"
         tools:text="GOLD" />
+
+    <TextView
+        android:id="@+id/textView_level"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView_levelLabel"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView_levelLabel"
+        tools:text="LEVEL" />
+
+    <TextView
+        android:id="@+id/textView_winstreak"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView_winstreakLabel"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView_winstreakLabel"
+        tools:text="WINSTREAK" />
+
+    <TextView
+        android:id="@+id/textView_tokens"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView_tokensLabel"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView_tokensLabel"
+        tools:text="TOKENS" />
+
+    <TextView
+        android:id="@+id/textView_iron"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView_ironLabel"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView_ironLabel"
+        tools:text="IRON" />
 
     <ImageView
         android:id="@+id/imageView_diamondIcon"
@@ -242,7 +250,7 @@
         android:id="@+id/textView_diamonds"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="8dp"
         android:textSize="16sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView_diamondsLabel"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
@@ -277,7 +285,7 @@
         android:id="@+id/textView_emeralds"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="8dp"
         android:textSize="16sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView_emeraldsLabel"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
@@ -318,7 +326,6 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView_kdrLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/minecraft_ten"
@@ -369,7 +376,7 @@
                 android:fontFamily="@font/minecraft_ten"
                 android:labelFor="@id/textView_kills"
                 android:text="@string/kills_label"
-                android:textColor="@color/dark_green"
+                android:textColor="@color/positive_stat"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/textView_kills"
@@ -381,7 +388,7 @@
                 android:id="@+id/textView_kills"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/dark_green"
+                android:textColor="@color/positive_stat"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -420,7 +427,7 @@
                 android:fontFamily="@font/minecraft_ten"
                 android:labelFor="@id/textView_deaths"
                 android:text="@string/deaths_label"
-                android:textColor="@color/dark_red"
+                android:textColor="@color/negative_stat"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/textView_deaths"
@@ -432,7 +439,7 @@
                 android:id="@+id/textView_deaths"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/dark_red"
+                android:textColor="@color/negative_stat"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -469,7 +476,6 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView_fkdrLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/minecraft_ten"
@@ -522,7 +528,7 @@
                 android:fontFamily="@font/minecraft_ten"
                 android:labelFor="@id/textView_finalKills"
                 android:text="@string/final_kills_label"
-                android:textColor="@color/dark_green"
+                android:textColor="@color/positive_stat"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/textView_finalKills"
@@ -534,7 +540,7 @@
                 android:id="@+id/textView_finalKills"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/dark_green"
+                android:textColor="@color/positive_stat"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -575,7 +581,7 @@
                 android:fontFamily="@font/minecraft_ten"
                 android:labelFor="@id/textView_finalDeaths"
                 android:text="@string/final_deaths_label"
-                android:textColor="@color/dark_red"
+                android:textColor="@color/negative_stat"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/textView_finalDeaths"
@@ -587,7 +593,7 @@
                 android:id="@+id/textView_finalDeaths"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/dark_red"
+                android:textColor="@color/negative_stat"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -622,7 +628,6 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView_wlrLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/minecraft_ten"
@@ -672,7 +677,7 @@
                 android:fontFamily="@font/minecraft_ten"
                 android:labelFor="@id/textView_wins"
                 android:text="@string/wins_label"
-                android:textColor="@color/dark_green"
+                android:textColor="@color/positive_stat"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/textView_wins"
@@ -684,7 +689,7 @@
                 android:id="@+id/textView_wins"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/dark_green"
+                android:textColor="@color/positive_stat"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -723,7 +728,7 @@
                 android:fontFamily="@font/minecraft_ten"
                 android:labelFor="@id/textView_losses"
                 android:text="@string/losses_label"
-                android:textColor="@color/dark_red"
+                android:textColor="@color/negative_stat"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/textView_losses"
@@ -735,7 +740,7 @@
                 android:id="@+id/textView_losses"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/dark_red"
+                android:textColor="@color/negative_stat"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -772,7 +777,6 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView_bblrLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/minecraft_ten"
@@ -825,7 +829,7 @@
                 android:fontFamily="@font/minecraft_ten"
                 android:labelFor="@id/textView_bedsBroken"
                 android:text="@string/beds_broken_label"
-                android:textColor="@color/dark_green"
+                android:textColor="@color/positive_stat"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/textView_bedsBroken"
@@ -837,7 +841,7 @@
                 android:id="@+id/textView_bedsBroken"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/dark_green"
+                android:textColor="@color/positive_stat"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -877,7 +881,7 @@
                 android:fontFamily="@font/minecraft_ten"
                 android:labelFor="@id/textView_bedsLost"
                 android:text="@string/beds_lost"
-                android:textColor="@color/dark_red"
+                android:textColor="@color/negative_stat"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/textView_bedsLost"
@@ -889,7 +893,7 @@
                 android:id="@+id/textView_bedsLost"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/dark_red"
+                android:textColor="@color/negative_stat"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

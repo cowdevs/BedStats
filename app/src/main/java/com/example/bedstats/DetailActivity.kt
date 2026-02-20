@@ -49,7 +49,8 @@ class DetailActivity : AppCompatActivity() {
     private fun handlePlayerDataResponse() {
         binding.textViewPlayerName.text = stats.displayName
         binding.textViewLevel.text = stats.level.toString()
-
+        binding.textViewTokens.text = stats.tokens.toString()
+        binding.textViewWinstreak.text = stats.winstreak.toString()
         binding.textViewIron.text = stats.iron.toString()
         binding.textViewGold.text = stats.gold.toString()
         binding.textViewDiamonds.text = stats.diamonds.toString()

@@ -25,6 +25,7 @@ data class PlayerData(
         data class BedwarsStatistics(
             @SerializedName("Experience") val experience: Int,
             @SerializedName("coins") val tokens: Int,
+            val winstreak: Int,
 
             // Resources
             @SerializedName("emerald_resources_collected_bedwars") val emeralds: Int,

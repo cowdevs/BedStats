@@ -22,8 +22,8 @@ import java.io.ByteArrayOutputStream
 class MainActivity : AppCompatActivity() {
     companion object {
         const val TAG = "MainActivity"
-        const val EXTRA_STATISTICS = "com.example.hypixelstats.STATISTICS"
-        const val EXTRA_SKIN_BITMAP = "com.example.hypixelstats.SKIN_BITMAP"
+        const val EXTRA_STATISTICS = "com.example.bedstats.STATISTICS"
+        const val EXTRA_SKIN_BITMAP = "com.example.bedstats.SKIN_BITMAP"
     }
 
     private lateinit var binding: ActivityMainBinding
@@ -104,7 +104,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadSkinBitmap(uuid: String) {
-        val url = "https://starlightskins.lunareclipse.studio/render/default/$uuid/bust"
+        val url = "https://starlightskins.lunareclipse.studio/render/dungeons/$uuid/bust"
         skinTarget = object : Target {
             override fun onBitmapLoaded(bitmap: Bitmap?, from: Picasso.LoadedFrom?) {
                 loadedSkinBitmap = bitmap

@@ -16,7 +16,6 @@
     <string name="beds_lost">Beds\nLost</string>
     <string name="level_label">Level</string>
     <string name="tokens_label">Tokens</string>
-    <string name="karma_label">Karma</string>
     <string name="winstreak_label">Winstreak</string>
     <string name="iron_label">Iron</string>
     <string name="gold_label">Gold</string>

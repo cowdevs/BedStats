@@ -1,10 +1,10 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="Base.Theme.HypixelStats" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.BedStats" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <item name="android:fontFamily">@font/minecraft_seven</item>
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.BedStats" parent="Base.Theme.HypixelStats" />
+    <style name="Theme.BedStats" parent="Base.Theme.BedStats" />
 </resources>
