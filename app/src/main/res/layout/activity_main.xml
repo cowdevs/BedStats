@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F9FAFB"
+    android:background="@color/minecraft_white"
     tools:context=".MainActivity">
 
     <TextView
@@ -48,12 +48,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:backgroundTint="@color/minecraft_green"
+        android:backgroundTint="@color/minecraft_dark_green"
         android:fontFamily="@font/minecraft_seven"
         android:insetTop="0dp"
         android:insetBottom="0dp"
         android:text="@string/search_button"
-        android:textColor="@color/white"
+        android:textColor="@color/minecraft_white"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/editText_main_searchPlayer"

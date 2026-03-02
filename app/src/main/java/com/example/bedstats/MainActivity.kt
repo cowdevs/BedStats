@@ -130,6 +130,7 @@ class MainActivity : AppCompatActivity() {
             override fun onResponse(call: Call<PlayerData>, response: Response<PlayerData>) {
                 val body = response.body()
                 if (response.isSuccessful && body != null) {
+                    Log.d(TAG, "${RankFormatHelper.calcTag(body)}")
                     loadedStatistics = Statistics.from(body)
                     if (loadedStatistics == null) {
                         isLoading = false

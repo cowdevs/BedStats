@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="positive_stat">#FF2E7D32</color>
-    <color name="negative_stat">#FFAA0000</color>
-    <color name="white">#FFFFFF</color>
-    <color name="minecraft_green">#FF53A535</color>
+    <color name="minecraft_black">#FF000000</color>
+    <color name="minecraft_dark_blue">#FF0000AA</color>
+    <color name="minecraft_dark_green">#FF00AA00</color>
+    <color name="minecraft_dark_aqua">#FF00AAAA</color>
+    <color name="minecraft_dark_red">#FFAA0000</color>
+    <color name="minecraft_dark_purple">#FFAA00AA</color>
+    <color name="minecraft_gold">#FFFFAA00</color>
+    <color name="minecraft_gray">#FFAAAAAA</color>
+    <color name="minecraft_dark_gray">#FF555555</color>
+    <color name="minecraft_blue">#FF5555FF</color>
+    <color name="minecraft_green">#FF55FF55</color>
+    <color name="minecraft_aqua">#FF55FFFF</color>
+    <color name="minecraft_red">#FFFF5555</color>
+    <color name="minecraft_light_purple">#FFFF55FF</color>
+    <color name="minecraft_yellow">#FFFFFF55</color>
+    <color name="minecraft_white">#FFFFFFFF</color>
 </resources>
