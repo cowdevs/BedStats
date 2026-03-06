@@ -111,7 +111,7 @@ object RankFormatHelper {
 				"YOUTUBER" -> makeRank(
 					player.displayName,
 					"YOUTUBE",
-					R.color.minecraft_white,
+					R.color.minecraft_dark_gray,
 					null,
 					null,
 					R.color.minecraft_red
@@ -157,10 +157,10 @@ object RankFormatHelper {
 					null
 				)
 
-				else -> listOf(TagComponent(R.color.minecraft_gray, ""))
+				else -> listOf(TagComponent(R.color.minecraft_dark_gray, ""))
 			}
 		}
-		return listOf(TagComponent(R.color.minecraft_gray, ""))
+		return listOf(TagComponent(R.color.minecraft_dark_gray, ""))
 	}
 
 	fun parsePrefix(prefix: String): List<TagComponent> {
@@ -178,7 +178,7 @@ object RankFormatHelper {
 				prefix.substring(code.range.last + 1, colorCodes[i + 1].range.first)
 			}
 			Log.d(TAG, "parsePrefix: §$c, $text")
-			components.add(TagComponent(colors[c] ?: R.color.minecraft_white, text))
+			components.add(TagComponent(colors[c] ?: 0, text))
 		}
 
 		return components

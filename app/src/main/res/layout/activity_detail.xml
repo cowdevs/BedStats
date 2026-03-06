@@ -6,7 +6,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".DetailActivity"
-        android:foregroundGravity="center">
+        android:foregroundGravity="center"
+        android:background="@color/minecraft_white">
 
 
     <androidx.constraintlayout.widget.Guideline
