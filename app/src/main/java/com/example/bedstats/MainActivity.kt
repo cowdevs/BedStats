@@ -22,8 +22,8 @@ import java.io.ByteArrayOutputStream
 class MainActivity : AppCompatActivity() {
     companion object {
         const val TAG = "MainActivity"
-        const val EXTRA_STATISTICS = "com.example.bedstats.STATISTICS"
-        const val EXTRA_SKIN_BITMAP = "com.example.bedstats.SKIN_BITMAP"
+        const val EXTRA_STATISTICS = "com.example.EXTRA_STATISTICS"
+        const val EXTRA_SKIN_BITMAP = "com.example.EXTRA_SKIN_BITMAP"
     }
 
     private lateinit var binding: ActivityMainBinding
@@ -130,7 +130,7 @@ class MainActivity : AppCompatActivity() {
             override fun onResponse(call: Call<PlayerData>, response: Response<PlayerData>) {
                 val body = response.body()
                 if (response.isSuccessful && body != null) {
-                    Log.d(TAG, "${RankFormatHelper.calcTag(body)}")
+                    Log.d(TAG, "${RankFormatHelper.calculateTag(body)}")
                     loadedStatistics = Statistics.from(body)
                     if (loadedStatistics == null) {
                         isLoading = false
@@ -181,13 +181,13 @@ class MainActivity : AppCompatActivity() {
         binding.progressBarMainLoading.visibility = View.GONE
     }
 
-    private fun goToDetailPage(statistics: Statistics, skinBitmap: Bitmap?) {
+    private fun goToDetailPage(statistics: Statistics, skin: Bitmap?) {
         val intent = Intent(this, DetailActivity::class.java)
         intent.putExtra(EXTRA_STATISTICS, statistics)
 
-        if (skinBitmap != null) {
+        if (skin != null) {
             val stream = ByteArrayOutputStream()
-            skinBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
+            skin.compress(Bitmap.CompressFormat.PNG, 100, stream)
             intent.putExtra(EXTRA_SKIN_BITMAP, stream.toByteArray())
         }
 

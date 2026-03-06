@@ -1,37 +1,40 @@
 package com.example.bedstats
 
 import android.content.Context
+import android.os.Parcelable
 import android.text.Spannable
-import android.text.SpannableString
 import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
 import android.util.Log
 import androidx.core.content.ContextCompat
+import kotlinx.parcelize.Parcelize
 
 object RankFormatHelper {
 	const val TAG = "RankFormatHelper"
 
-	data class TagComponent(val color: Int, val text: String)
+	@Parcelize
+	data class TagComponent(val color: Int, val text: String) : Parcelable
 
 	fun makeRank(
-		rank: String,
-		color: Int,
-		plus: String?,
+		name: String,
+		rankText: String,
+		rankColor: Int,
+		plusText: String?,
 		plusColor: Int?,
-		bracketColor: Int = color
+		bracketColor: Int = rankColor
 	): List<TagComponent> {
-		return if (plus != null && plusColor != null) {
+		return if (plusText != null && plusColor != null) {
 			listOf(
 				TagComponent(bracketColor, "["),
-				TagComponent(color, rank),
-				TagComponent(plusColor, plus),
-				TagComponent(bracketColor, "]")
+				TagComponent(rankColor, rankText),
+				TagComponent(plusColor, plusText),
+				TagComponent(bracketColor, "] $name")
 			)
 		} else {
 			listOf(
 				TagComponent(bracketColor, "["),
-				TagComponent(color, rank),
-				TagComponent(bracketColor, "]")
+				TagComponent(rankColor, rankText),
+				TagComponent(bracketColor, "] $name")
 			)
 		}
 	}
@@ -71,14 +74,16 @@ object RankFormatHelper {
 		"f" to R.color.minecraft_white
 	)
 
-	fun calcTag(stats: Statistics): List<TagComponent> {
-		var packageRank = stats.packageRank
-		var newPackageRank = stats.newPackageRank
-		var monthlyPackageRank = stats.monthlyPackageRank
-		val rankPlusColor = stats.rankPlusColor
-		val monthlyRankColor = stats.monthlyRankColor
-		var rank = stats.rank
-		val prefix = stats.prefix
+	fun calculateTag(playerData: PlayerData): List<TagComponent> {
+		val player = playerData.player!!
+
+		var packageRank = player.packageRank
+		var newPackageRank = player.newPackageRank
+		var monthlyPackageRank = player.monthlyPackageRank
+		val rankPlusColor = player.rankPlusColor
+		val monthlyRankColor = player.monthlyRankColor
+		var rank = player.rank
+		val prefix = player.prefix
 
 		if (rank == "NORMAL") rank = null
 		if (monthlyPackageRank == "NONE") monthlyPackageRank = null
@@ -91,23 +96,67 @@ object RankFormatHelper {
 
 		val chosenRankKey = rank ?: monthlyPackageRank ?: newPackageRank ?: packageRank
 		if (chosenRankKey != null) {
-			val plusColor = colors[rankPlusColor]
-			val rankColor = colors[monthlyRankColor] ?: R.color.minecraft_gold
+			val p = colors[rankPlusColor]
+			val r = colors[monthlyRankColor] ?: R.color.minecraft_gold
 			return when (chosenRankKey) {
-				"STAFF" -> makeRank("ዞ", R.color.minecraft_gold, null, null, R.color.minecraft_red)
+				"STAFF" -> makeRank(
+					player.displayName,
+					"ዞ",
+					R.color.minecraft_gold,
+					null,
+					null,
+					R.color.minecraft_red
+				)
+
 				"YOUTUBER" -> makeRank(
-					"YOUTUBER",
+					player.displayName,
+					"YOUTUBE",
 					R.color.minecraft_white,
 					null,
 					null,
 					R.color.minecraft_red
 				)
 
-				"SUPERSTAR" -> makeRank("MVP", rankColor, "++", plusColor)
-				"MVP_PLUS" -> makeRank("MVP", R.color.minecraft_aqua, "+", plusColor)
-				"MVP" -> makeRank("MVP", R.color.minecraft_aqua, null, null)
-				"VIP_PLUS" -> makeRank("VIP", R.color.minecraft_green, "+", R.color.minecraft_gold)
-				"VIP" -> makeRank("VIP", R.color.minecraft_green, null, null)
+				"SUPERSTAR" -> makeRank(
+					player.displayName,
+					"MVP",
+					r,
+					"++",
+					p
+				)
+
+				"MVP_PLUS" -> makeRank(
+					player.displayName,
+					"MVP",
+					R.color.minecraft_aqua,
+					"+",
+					p
+				)
+
+				"MVP" -> makeRank(
+					player.displayName,
+					"MVP",
+					R.color.minecraft_aqua,
+					null,
+					null
+				)
+
+				"VIP_PLUS" -> makeRank(
+					player.displayName,
+					"VIP",
+					R.color.minecraft_green,
+					"+",
+					R.color.minecraft_gold
+				)
+
+				"VIP" -> makeRank(
+					player.displayName,
+					"VIP",
+					R.color.minecraft_green,
+					null,
+					null
+				)
+
 				else -> listOf(TagComponent(R.color.minecraft_gray, ""))
 			}
 		}
@@ -123,12 +172,10 @@ object RankFormatHelper {
 		for (i in colorCodes.indices) {
 			val code = colorCodes[i]
 			val c = code.groupValues[1]
-
-			var text: String
-			if (i == colorCodes.size - 1) {
-				text = prefix.substring(code.range.last + 1)
+			val text = if (i == colorCodes.size - 1) {
+				prefix.substring(code.range.last + 1)
 			} else {
-				text = prefix.substring(code.range.last + 1, colorCodes[i + 1].range.first)
+				prefix.substring(code.range.last + 1, colorCodes[i + 1].range.first)
 			}
 			Log.d(TAG, "parsePrefix: §$c, $text")
 			components.add(TagComponent(colors[c] ?: R.color.minecraft_white, text))
@@ -137,19 +184,15 @@ object RankFormatHelper {
 		return components
 	}
 
-	fun buildTextSpan(context: Context, tags: List<TagComponent>): SpannableStringBuilder {
-		val e = SpannableStringBuilder()
-
-		for (tag in tags) {
-			val spannable = SpannableString(tag.text)
-			spannable.setSpan(
-				ForegroundColorSpan(ContextCompat.getColor(context, tag.color)),
-				0, spannable.length,
-				Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+	fun buildTextSpan(context: Context, tagComponents: List<TagComponent>): SpannableStringBuilder {
+		val spannable = SpannableStringBuilder()
+		for (component in tagComponents) {
+			spannable.append(
+				component.text,
+				ForegroundColorSpan(ContextCompat.getColor(context, component.color)),
+				Spannable.SPAN_EXCLUSIVE_INCLUSIVE
 			)
-			e.append(spannable)
 		}
-
-		return e
+		return spannable
 	}
 }

@@ -5,7 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Statistics(
-	val displayName: String,
+	val nameDisplay: List<RankFormatHelper.TagComponent>,
 	val level: Int,
 	val tokens: Int,
 	val winstreak: Int,
@@ -29,17 +29,7 @@ data class Statistics(
 	val ultimate: ModeStatistics,
 	val underworld: ModeStatistics,
 	val voidless: ModeStatistics,
-	val oneblock: ModeStatistics,
-
-	// Rank information (not always present)
-	// TODO: Avoid putting this in Statistics
-	val packageRank: String? = null,
-	val newPackageRank: String? = null,
-	val monthlyPackageRank: String? = null,
-	val rankPlusColor: String? = null,
-	val monthlyRankColor: String? = null,
-	val rank: String? = null,
-	val prefix: String? = null
+	val oneblock: ModeStatistics
 ) : Parcelable {
 	@Parcelize
 	data class ModeStatistics(
@@ -64,7 +54,7 @@ data class Statistics(
 			val bedwars = player.stats.bedwars ?: return null // No Bedwars stats available
 
 			return Statistics(
-				displayName = player.displayName,
+				nameDisplay = RankFormatHelper.calculateTag(playerData),
 				level = calculateLevel(bedwars.experience),
 				tokens = bedwars.tokens,
 				winstreak = bedwars.winstreak,
@@ -231,14 +221,7 @@ data class Statistics(
 					deaths = bedwars.deathsOneblock,
 					bedsBroken = bedwars.bedsBrokenOneblock,
 					bedsLost = bedwars.bedsLostOneblock
-				),
-				packageRank = player.packageRank,
-				newPackageRank = player.newPackageRank,
-				monthlyPackageRank = player.monthlyPackageRank,
-				rankPlusColor = player.rankPlusColor,
-				monthlyRankColor = player.monthlyRankColor,
-				rank = player.rank,
-				prefix = player.prefix
+				)
 			)
 		}
 

@@ -14,108 +14,115 @@ import java.util.Locale
 import kotlin.math.round
 
 class DetailActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityDetailBinding
-    private lateinit var stats: Statistics
+	private lateinit var binding: ActivityDetailBinding
+	private lateinit var stats: Statistics
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        binding = ActivityDetailBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+	override fun onCreate(savedInstanceState: Bundle?) {
+		super.onCreate(savedInstanceState)
+		enableEdgeToEdge()
+		binding = ActivityDetailBinding.inflate(layoutInflater)
+		setContentView(binding.root)
+		ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+			val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+			v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+			insets
+		}
 
-        val statistics = intent.getParcelableExtra(MainActivity.EXTRA_STATISTICS, Statistics::class.java)
-        val skinBitmapBytes = intent.getByteArrayExtra(MainActivity.EXTRA_SKIN_BITMAP)
+		val statistics = intent.getParcelableExtra(MainActivity.EXTRA_STATISTICS, Statistics::class.java)
+		val skinBitmapBytes = intent.getByteArrayExtra(MainActivity.EXTRA_SKIN_BITMAP)
 
-        if (statistics != null) {
-            stats = statistics
-            if (skinBitmapBytes != null) {
-                val bitmap = BitmapFactory.decodeByteArray(skinBitmapBytes, 0, skinBitmapBytes.size)
-                binding.imageViewPlayerSkin.setImageBitmap(bitmap)
-            }
-            setupModeSpinner()
-            handlePlayerDataResponse()
-        } else {
-            Toast.makeText(this, "Error retrieving player data", Toast.LENGTH_SHORT).show()
-            finish()
-        }
-    }
+		if (statistics != null) {
+			stats = statistics
+			if (skinBitmapBytes != null) {
+				val bitmap = BitmapFactory.decodeByteArray(skinBitmapBytes, 0, skinBitmapBytes.size)
+				binding.imageViewPlayerSkin.setImageBitmap(bitmap)
+			}
+			setupModeSpinner()
+			handlePlayerDataResponse()
+		} else {
+			Toast.makeText(this, "Error retrieving player data", Toast.LENGTH_SHORT).show()
+			finish()
+		}
+	}
 
 
-    private fun handlePlayerDataResponse() {
-        binding.textViewPlayerName.text = stats.displayName // HERE
-        binding.textViewLevel.text = stats.level.toString()
-        binding.textViewTokens.text = stats.tokens.toString()
-        binding.textViewWinstreak.text = stats.winstreak.toString()
-        binding.textViewIron.text = stats.iron.toString()
-        binding.textViewGold.text = stats.gold.toString()
-        binding.textViewDiamonds.text = stats.diamonds.toString()
-        binding.textViewEmeralds.text = stats.emeralds.toString()
+	private fun handlePlayerDataResponse() {
+		binding.textViewName.text = RankFormatHelper.buildTextSpan(this, stats.nameDisplay)
+		binding.textViewLevel.text = stats.level.toString()
+		binding.textViewTokens.text = stats.tokens.toString()
+		binding.textViewWinstreak.text = stats.winstreak.toString()
+		binding.textViewIron.text = stats.iron.toString()
+		binding.textViewGold.text = stats.gold.toString()
+		binding.textViewDiamonds.text = stats.diamonds.toString()
+		binding.textViewEmeralds.text = stats.emeralds.toString()
 
-        showStatsForMode("Overall")
-    }
+		showStatsForMode("Overall")
+	}
 
-    private fun setupModeSpinner() {
-        val adapter = ArrayAdapter.createFromResource(this, R.array.mode_options, R.layout.item_spinner)
-        adapter.setDropDownViewResource(R.layout.dropdown_item_spinner)
-        binding.spinnerModeSelect.adapter = adapter
+	private fun setupModeSpinner() {
+		val adapter =
+			ArrayAdapter.createFromResource(this, R.array.mode_options, R.layout.item_spinner)
+		adapter.setDropDownViewResource(R.layout.dropdown_item_spinner)
+		binding.spinnerModeSelect.adapter = adapter
 
-        binding.spinnerModeSelect.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>, view: android.view.View?, position: Int, id: Long) {
-                val selected = parent.getItemAtPosition(position).toString()
-                showStatsForMode(selected)
-            }
+		binding.spinnerModeSelect.onItemSelectedListener =
+			object : AdapterView.OnItemSelectedListener {
+				override fun onItemSelected(
+					parent: AdapterView<*>,
+					view: android.view.View?,
+					position: Int,
+					id: Long
+				) {
+					val selected = parent.getItemAtPosition(position).toString()
+					showStatsForMode(selected)
+				}
 
-            override fun onNothingSelected(parent: AdapterView<*>) {}
-        }
-    }
+				override fun onNothingSelected(parent: AdapterView<*>) {}
+			}
+	}
 
-    private fun showStatsForMode(selected: String) {
-        val mode = when (selected) {
-            "Overall" -> stats.overall
-            "Core" -> stats.core
-            "Solo" -> stats.solo
-            "Doubles" -> stats.doubles
-            "Threes" -> stats.threes
-            "Fours" -> stats.fours
-            "4v4" -> stats.fours2
-            "Armed" -> stats.armed
-            "Castle" -> stats.castle
-            "Lucky" -> stats.lucky
-            "Rush" -> stats.rush
-            "Swap" -> stats.swap
-            "Ultimate" -> stats.ultimate
-            "Underworld" -> stats.underworld
-            "Voidless" -> stats.voidless
-            "One Block" -> stats.oneblock
-            else -> return
-        }
+	private fun showStatsForMode(selected: String) {
+		val mode = when (selected) {
+			"Overall" -> stats.overall
+			"Core" -> stats.core
+			"Solo" -> stats.solo
+			"Doubles" -> stats.doubles
+			"Threes" -> stats.threes
+			"Fours" -> stats.fours
+			"4v4" -> stats.fours2
+			"Armed" -> stats.armed
+			"Castle" -> stats.castle
+			"Lucky" -> stats.lucky
+			"Rush" -> stats.rush
+			"Swap" -> stats.swap
+			"Ultimate" -> stats.ultimate
+			"Underworld" -> stats.underworld
+			"Voidless" -> stats.voidless
+			"One Block" -> stats.oneblock
+			else -> return
+		}
 
-        binding.textViewKills.text = mode.kills.toString()
-        binding.textViewDeaths.text = mode.deaths.toString()
-        binding.textViewFinalKills.text = mode.finalKills.toString()
-        binding.textViewFinalDeaths.text = mode.finalDeaths.toString()
-        binding.textViewWins.text = mode.wins.toString()
-        binding.textViewLosses.text = mode.losses.toString()
-        binding.textViewBedsBroken.text = mode.bedsBroken.toString()
-        binding.textViewBedsLost.text = mode.bedsLost.toString()
+		binding.textViewKills.text = mode.kills.toString()
+		binding.textViewDeaths.text = mode.deaths.toString()
+		binding.textViewFinalKills.text = mode.finalKills.toString()
+		binding.textViewFinalDeaths.text = mode.finalDeaths.toString()
+		binding.textViewWins.text = mode.wins.toString()
+		binding.textViewLosses.text = mode.losses.toString()
+		binding.textViewBedsBroken.text = mode.bedsBroken.toString()
+		binding.textViewBedsLost.text = mode.bedsLost.toString()
 
-        binding.textViewKdr.text = formatRatio(mode.kdr)
-        binding.textViewFkdr.text = formatRatio(mode.fkdr)
-        binding.textViewWlr.text = formatRatio(mode.wlr)
-        binding.textViewBblr.text = formatRatio(mode.bblr)
-    }
+		binding.textViewKdr.text = formatRatio(mode.kdr)
+		binding.textViewFkdr.text = formatRatio(mode.fkdr)
+		binding.textViewWlr.text = formatRatio(mode.wlr)
+		binding.textViewBblr.text = formatRatio(mode.bblr)
+	}
 
-    private fun formatRatio(value: Double): String {
-        val rounded = round(value)
-        return if (rounded == value) {
-            rounded.toLong().toString()
-        } else {
-            String.format(Locale.ROOT, "%.2f", value)
-        }
-    }
+	private fun formatRatio(value: Double): String {
+		val rounded = round(value)
+		return if (rounded == value) {
+			rounded.toLong().toString()
+		} else {
+			String.format(Locale.ROOT, "%.2f", value)
+		}
+	}
 }
