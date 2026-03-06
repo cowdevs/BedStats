@@ -111,7 +111,7 @@ object RankFormatHelper {
 				"YOUTUBER" -> makeRank(
 					player.displayName,
 					"YOUTUBE",
-					R.color.minecraft_dark_gray,
+					R.color.minecraft_gray,
 					null,
 					null,
 					R.color.minecraft_red
