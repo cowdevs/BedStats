@@ -29,14 +29,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="32dp" />
+            app:layout_constraintGuide_begin="16dp" />
 
     <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_bottom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_end="48dp" />
+            app:layout_constraintGuide_end="16dp" />
 
     <TextView
             android:id="@+id/text_view_name"
@@ -48,7 +48,12 @@
             tools:text="UltimatePlayer67"
             app:layout_constraintTop_toTopOf="@+id/guideline_top"
             app:layout_constraintStart_toStartOf="@+id/guideline_left"
-            app:layout_constraintEnd_toStartOf="@+id/guideline_right" />
+            app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+            android:shadowColor="@color/minecraft_dark_gray"
+            android:shadowRadius="2"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:padding="2dp" />
 
     <androidx.cardview.widget.CardView
             android:id="@+id/cardView_playerSkin"
@@ -310,14 +315,14 @@
     <Spinner
             android:id="@+id/spinner_modeSelect"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             app:layout_constraintEnd_toStartOf="@+id/guideline_right"
             app:layout_constraintStart_toStartOf="@+id/guideline_left"
             app:layout_constraintTop_toBottomOf="@+id/cardView_playerSkin"
             app:layout_constraintVertical_chainStyle="packed"
             android:padding="0dp"
             android:gravity="center_vertical"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:entries="@array/mode_options" />
 
     <androidx.cardview.widget.CardView
@@ -351,7 +356,7 @@
                     android:text="@string/kdr_label"
                     android:textAlignment="center"
                     android:textAllCaps="false"
-                    android:textSize="20sp"
+                    android:textSize="22sp"
                     android:textColor="@color/minecraft_black" />
 
             <TextView
@@ -360,7 +365,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:textAlignment="center"
-                    android:textSize="32sp"
+                    android:textSize="33sp"
                     tools:text="1.23"
                     android:textColor="@color/minecraft_black" />
 
@@ -372,7 +377,7 @@
             android:id="@+id/cardView_kills"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:cardBackgroundColor="#F5FFF5"
+            app:cardBackgroundColor="#F0FFF0"
             app:cardCornerRadius="16dp"
             app:cardElevation="4dp"
             app:contentPaddingBottom="8dp"
@@ -396,7 +401,7 @@
                     android:labelFor="@id/textView_kills"
                     android:text="@string/kills_label"
                     android:textColor="@color/minecraft_dark_green"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/textView_kills"
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
@@ -408,7 +413,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/minecraft_dark_green"
-                    android:textSize="24sp"
+                    android:textSize="25sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textView_killsLabel"
@@ -423,7 +428,7 @@
             android:id="@+id/cardView_deaths"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:cardBackgroundColor="#FFF5F5"
+            app:cardBackgroundColor="#FFF0F0"
             app:cardCornerRadius="16dp"
             app:cardElevation="4dp"
             app:contentPaddingBottom="8dp"
@@ -447,7 +452,7 @@
                     android:labelFor="@id/textView_deaths"
                     android:text="@string/deaths_label"
                     android:textColor="@color/minecraft_dark_red"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/textView_deaths"
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
@@ -459,7 +464,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/minecraft_dark_red"
-                    android:textSize="24sp"
+                    android:textSize="25sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textView_deathsLabel"
@@ -504,7 +509,7 @@
                     android:text="@string/fkdr_label"
                     android:textAlignment="center"
                     android:textAllCaps="false"
-                    android:textSize="20sp"
+                    android:textSize="22sp"
                     android:textColor="@color/minecraft_black" />
 
             <TextView
@@ -513,7 +518,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:textAlignment="center"
-                    android:textSize="32sp"
+                    android:textSize="33sp"
                     tools:text="1.23"
                     android:textColor="@color/minecraft_black" />
 
@@ -527,7 +532,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginBottom="8dp"
-            app:cardBackgroundColor="#F5FFF5"
+            app:cardBackgroundColor="#F0FFF0"
             app:cardCornerRadius="16dp"
             app:cardElevation="4dp"
             app:contentPaddingBottom="8dp"
@@ -551,7 +556,7 @@
                     android:labelFor="@id/textView_finalKills"
                     android:text="@string/final_kills_label"
                     android:textColor="@color/minecraft_dark_green"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/textView_finalKills"
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
@@ -563,7 +568,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/minecraft_dark_green"
-                    android:textSize="24sp"
+                    android:textSize="25sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textView_finalKillsLabel"
@@ -580,7 +585,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginBottom="16dp"
-            app:cardBackgroundColor="#FFF5F5"
+            app:cardBackgroundColor="#FFF0F0"
             app:cardCornerRadius="16dp"
             app:cardElevation="4dp"
             app:contentPaddingBottom="8dp"
@@ -604,7 +609,7 @@
                     android:labelFor="@id/textView_finalDeaths"
                     android:text="@string/final_deaths_label"
                     android:textColor="@color/minecraft_dark_red"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/textView_finalDeaths"
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
@@ -616,7 +621,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/minecraft_dark_red"
-                    android:textSize="24sp"
+                    android:textSize="25sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textView_finalDeathsLabel"
@@ -657,7 +662,7 @@
                     android:labelFor="@id/textView_wlr"
                     android:text="@string/wlr_label"
                     android:textAlignment="center"
-                    android:textSize="20sp"
+                    android:textSize="22sp"
                     android:textColor="@color/minecraft_black" />
 
             <TextView
@@ -666,7 +671,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:textAlignment="center"
-                    android:textSize="32sp"
+                    android:textSize="33sp"
                     tools:text="1.23"
                     android:textColor="@color/minecraft_black" />
 
@@ -678,7 +683,7 @@
             android:id="@+id/cardView_wins"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:cardBackgroundColor="#F5FFF5"
+            app:cardBackgroundColor="#F0FFF0"
             app:cardCornerRadius="16dp"
             app:cardElevation="4dp"
             app:contentPaddingBottom="8dp"
@@ -702,7 +707,7 @@
                     android:labelFor="@id/textView_wins"
                     android:text="@string/wins_label"
                     android:textColor="@color/minecraft_dark_green"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/textView_wins"
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
@@ -714,7 +719,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/minecraft_dark_green"
-                    android:textSize="24sp"
+                    android:textSize="25sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textView_winsLabel"
@@ -729,7 +734,7 @@
             android:id="@+id/cardView_losses"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:cardBackgroundColor="#FFF5F5"
+            app:cardBackgroundColor="#FFF0F0"
             app:cardCornerRadius="16dp"
             app:cardElevation="4dp"
             app:contentPaddingBottom="8dp"
@@ -753,7 +758,7 @@
                     android:labelFor="@id/textView_losses"
                     android:text="@string/losses_label"
                     android:textColor="@color/minecraft_dark_red"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/textView_losses"
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
@@ -765,7 +770,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/minecraft_dark_red"
-                    android:textSize="24sp"
+                    android:textSize="25sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textView_lossesLabel"
@@ -809,7 +814,7 @@
                     android:text="@string/bblr_label"
                     android:textAlignment="center"
                     android:textAllCaps="false"
-                    android:textSize="20sp"
+                    android:textSize="22sp"
                     android:textColor="@color/minecraft_black" />
 
             <TextView
@@ -818,7 +823,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:textAlignment="center"
-                    android:textSize="32sp"
+                    android:textSize="33sp"
                     tools:text="1.23"
                     android:textColor="@color/minecraft_black" />
 
@@ -832,7 +837,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginBottom="8dp"
-            app:cardBackgroundColor="#F5FFF5"
+            app:cardBackgroundColor="#F0FFF0"
             app:cardCornerRadius="16dp"
             app:cardElevation="4dp"
             app:contentPaddingBottom="8dp"
@@ -856,7 +861,7 @@
                     android:labelFor="@id/textView_bedsBroken"
                     android:text="@string/beds_broken_label"
                     android:textColor="@color/minecraft_dark_green"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/textView_bedsBroken"
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
@@ -868,7 +873,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/minecraft_dark_green"
-                    android:textSize="24sp"
+                    android:textSize="25sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textView_bedsBrokenLabel"
@@ -884,7 +889,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            app:cardBackgroundColor="#FFF5F5"
+            app:cardBackgroundColor="#FFF0F0"
             app:cardCornerRadius="16dp"
             app:cardElevation="4dp"
             app:contentPaddingBottom="8dp"
@@ -908,7 +913,7 @@
                     android:labelFor="@id/textView_bedsLost"
                     android:text="@string/beds_lost_label"
                     android:textColor="@color/minecraft_dark_red"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/textView_bedsLost"
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
@@ -920,7 +925,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/minecraft_dark_red"
-                    android:textSize="24sp"
+                    android:textSize="25sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textView_bedsLostLabel"
