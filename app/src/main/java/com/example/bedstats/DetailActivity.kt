@@ -2,6 +2,7 @@ package com.example.bedstats
 
 import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.util.Log
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
@@ -14,6 +15,10 @@ import java.util.Locale
 import kotlin.math.round
 
 class DetailActivity : AppCompatActivity() {
+	companion object {
+		const val TAG = "DetailActivity"
+	}
+
 	private lateinit var binding: ActivityDetailBinding
 	private lateinit var stats: Statistics
 
@@ -28,7 +33,8 @@ class DetailActivity : AppCompatActivity() {
 			insets
 		}
 
-		val statistics = intent.getParcelableExtra(MainActivity.EXTRA_STATISTICS, Statistics::class.java)
+		val statistics =
+			intent.getParcelableExtra(MainActivity.EXTRA_STATISTICS, Statistics::class.java)
 		val skinBitmapBytes = intent.getByteArrayExtra(MainActivity.EXTRA_SKIN_BITMAP)
 
 		if (statistics != null) {
@@ -47,6 +53,7 @@ class DetailActivity : AppCompatActivity() {
 
 
 	private fun handlePlayerDataResponse() {
+		Log.d(TAG, "handlePlayerDataResponse: ${stats.nameDisplay}")
 		binding.textViewName.text = RankFormatHelper.buildTextSpan(this, stats.nameDisplay)
 		binding.textViewLevel.text = stats.level.toString()
 		binding.textViewTokens.text = stats.tokens.toString()

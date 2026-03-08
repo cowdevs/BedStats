@@ -5,13 +5,10 @@ import android.os.Parcelable
 import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
-import android.util.Log
 import androidx.core.content.ContextCompat
 import kotlinx.parcelize.Parcelize
 
 object RankFormatHelper {
-	const val TAG = "RankFormatHelper"
-
 	@Parcelize
 	data class TagComponent(val color: Int, val text: String) : Parcelable
 
@@ -91,7 +88,7 @@ object RankFormatHelper {
 		if (newPackageRank == "NONE") newPackageRank = null
 
 		if (!prefix.isNullOrEmpty()) {
-			return parsePrefix(prefix)
+			return parsePrefix(prefix, player.displayName)
 		}
 
 		val chosenRankKey = rank ?: monthlyPackageRank ?: newPackageRank ?: packageRank
@@ -157,13 +154,13 @@ object RankFormatHelper {
 					null
 				)
 
-				else -> listOf(TagComponent(R.color.minecraft_dark_gray, ""))
+				else -> listOf(TagComponent(R.color.minecraft_dark_gray, player.displayName))
 			}
 		}
-		return listOf(TagComponent(R.color.minecraft_dark_gray, ""))
+		return listOf(TagComponent(R.color.minecraft_dark_gray, player.displayName))
 	}
 
-	fun parsePrefix(prefix: String): List<TagComponent> {
+	fun parsePrefix(prefix: String, name: String): List<TagComponent> {
 		val components = mutableListOf<TagComponent>()
 
 		val regex = Regex("§([a-f0-9])", RegexOption.IGNORE_CASE)
@@ -172,13 +169,13 @@ object RankFormatHelper {
 		for (i in colorCodes.indices) {
 			val code = colorCodes[i]
 			val c = code.groupValues[1]
-			val text = if (i == colorCodes.size - 1) {
-				prefix.substring(code.range.last + 1)
+			if (i == colorCodes.size - 1) {
+				val text = prefix.substring(code.range.last + 1)
+				components.add(TagComponent(colors[c] ?: 0, "$text $name"))
 			} else {
-				prefix.substring(code.range.last + 1, colorCodes[i + 1].range.first)
+				val text = prefix.substring(code.range.last + 1, colorCodes[i + 1].range.first)
+				components.add(TagComponent(colors[c] ?: 0, text))
 			}
-			Log.d(TAG, "parsePrefix: §$c, $text")
-			components.add(TagComponent(colors[c] ?: 0, text))
 		}
 
 		return components

@@ -1,6 +1,8 @@
 package com.example.bedstats
 
+import android.content.Context
 import android.os.Parcelable
+import android.widget.Toast
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -14,25 +16,25 @@ data class Statistics(
 	val diamonds: Int,
 	val emeralds: Int,
 
-	val overall: ModeStatistics,
-	val core: ModeStatistics,
-	val solo: ModeStatistics,
-	val doubles: ModeStatistics,
-	val threes: ModeStatistics,
-	val fours: ModeStatistics,
-	val fours2: ModeStatistics,
-	val armed: ModeStatistics,
-	val castle: ModeStatistics,
-	val lucky: ModeStatistics,
-	val rush: ModeStatistics,
-	val swap: ModeStatistics,
-	val ultimate: ModeStatistics,
-	val underworld: ModeStatistics,
-	val voidless: ModeStatistics,
-	val oneblock: ModeStatistics
+	val overall: ModeStats,
+	val core: ModeStats,
+	val solo: ModeStats,
+	val doubles: ModeStats,
+	val threes: ModeStats,
+	val fours: ModeStats,
+	val fours2: ModeStats,
+	val armed: ModeStats,
+	val castle: ModeStats,
+	val lucky: ModeStats,
+	val rush: ModeStats,
+	val swap: ModeStats,
+	val ultimate: ModeStats,
+	val underworld: ModeStats,
+	val voidless: ModeStats,
+	val oneblock: ModeStats
 ) : Parcelable {
 	@Parcelize
-	data class ModeStatistics(
+	data class ModeStats(
 		val wins: Int,
 		val losses: Int,
 		val finalKills: Int,
@@ -49,9 +51,19 @@ data class Statistics(
 	}
 
 	companion object {
-		fun from(playerData: PlayerData): Statistics? {
-			val player = playerData.player ?: return null // No player data available
-			val bedwars = player.stats.bedwars ?: return null // No Bedwars stats available
+		fun from(context: Context, playerData: PlayerData): Statistics? {
+			val player = playerData.player ?: run {
+				Toast.makeText(context, "Player has never joined Hypixel", Toast.LENGTH_SHORT).show()
+				return null
+			}
+			val stats = player.stats ?: run {
+				Toast.makeText(context, "Player has never played Hypixel", Toast.LENGTH_SHORT).show()
+				return null
+			}
+			val bedwars = stats.bedwars ?: run {
+				Toast.makeText(context, "Player has never played Bedwars", Toast.LENGTH_SHORT).show()
+				return null
+			}
 
 			return Statistics(
 				nameDisplay = RankFormatHelper.calculateTag(playerData),
@@ -62,7 +74,7 @@ data class Statistics(
 				gold = bedwars.gold,
 				diamonds = bedwars.diamonds,
 				emeralds = bedwars.emeralds,
-				overall = ModeStatistics(
+				overall = ModeStats(
 					wins = bedwars.wins,
 					losses = bedwars.losses,
 					finalKills = bedwars.finalKills,
@@ -72,7 +84,7 @@ data class Statistics(
 					bedsBroken = bedwars.bedsBroken,
 					bedsLost = bedwars.bedsLost
 				),
-				core = ModeStatistics(
+				core = ModeStats(
 					wins = bedwars.winsEightOne + bedwars.winsEightTwo + bedwars.winsFourThree + bedwars.winsFourFour,
 					losses = bedwars.lossesEightOne + bedwars.lossesEightTwo + bedwars.lossesFourThree + bedwars.lossesFourFour,
 					finalKills = bedwars.finalKillsEightOne + bedwars.finalKillsEightTwo + bedwars.finalKillsFourThree + bedwars.finalKillsFourFour,
@@ -82,7 +94,7 @@ data class Statistics(
 					bedsBroken = bedwars.bedsBrokenEightOne + bedwars.bedsBrokenEightTwo + bedwars.bedsBrokenFourThree + bedwars.bedsBrokenFourFour,
 					bedsLost = bedwars.bedsLostEightOne + bedwars.bedsLostEightTwo + bedwars.bedsLostFourThree + bedwars.bedsLostFourFour
 				),
-				solo = ModeStatistics(
+				solo = ModeStats(
 					wins = bedwars.winsEightOne,
 					losses = bedwars.lossesEightOne,
 					finalKills = bedwars.finalKillsEightOne,
@@ -92,7 +104,7 @@ data class Statistics(
 					bedsBroken = bedwars.bedsBrokenEightOne,
 					bedsLost = bedwars.bedsLostEightOne
 				),
-				doubles = ModeStatistics(
+				doubles = ModeStats(
 					wins = bedwars.winsEightTwo,
 					losses = bedwars.lossesEightTwo,
 					finalKills = bedwars.finalKillsEightTwo,
@@ -102,7 +114,7 @@ data class Statistics(
 					bedsBroken = bedwars.bedsBrokenEightTwo,
 					bedsLost = bedwars.bedsLostEightTwo
 				),
-				threes = ModeStatistics(
+				threes = ModeStats(
 					wins = bedwars.winsFourThree,
 					losses = bedwars.lossesFourThree,
 					finalKills = bedwars.finalKillsFourThree,
@@ -112,7 +124,7 @@ data class Statistics(
 					bedsBroken = bedwars.bedsBrokenFourThree,
 					bedsLost = bedwars.bedsLostFourThree
 				),
-				fours = ModeStatistics(
+				fours = ModeStats(
 					wins = bedwars.winsFourFour,
 					losses = bedwars.lossesFourFour,
 					finalKills = bedwars.finalKillsFourFour,
@@ -122,7 +134,7 @@ data class Statistics(
 					bedsBroken = bedwars.bedsBrokenFourFour,
 					bedsLost = bedwars.bedsLostFourFour
 				),
-				fours2 = ModeStatistics(
+				fours2 = ModeStats(
 					wins = bedwars.winsTwoFour,
 					losses = bedwars.lossesTwoFour,
 					finalKills = bedwars.finalKillsTwoFour,
@@ -132,7 +144,7 @@ data class Statistics(
 					bedsBroken = bedwars.bedsBrokenTwoFour,
 					bedsLost = bedwars.bedsLostTwoFour
 				),
-				armed = ModeStatistics(
+				armed = ModeStats(
 					wins = bedwars.winsEightTwoArmed + bedwars.winsFourFourArmed,
 					losses = bedwars.lossesEightTwoArmed + bedwars.lossesFourFourArmed,
 					finalKills = bedwars.finalKillsEightTwoArmed + bedwars.finalKillsFourFourArmed,
@@ -142,7 +154,7 @@ data class Statistics(
 					bedsBroken = bedwars.bedsBrokenEightTwoArmed + bedwars.bedsBrokenFourFourArmed,
 					bedsLost = bedwars.bedsLostEightTwoArmed + bedwars.bedsLostFourFourArmed
 				),
-				castle = ModeStatistics(
+				castle = ModeStats(
 					wins = bedwars.winsCastle,
 					losses = bedwars.lossesCastle,
 					finalKills = bedwars.finalKillsCastle,
@@ -152,7 +164,7 @@ data class Statistics(
 					bedsBroken = bedwars.bedsBrokenCastle,
 					bedsLost = bedwars.bedsLostCastle
 				),
-				lucky = ModeStatistics(
+				lucky = ModeStats(
 					wins = bedwars.winsEightTwoLucky + bedwars.winsFourFourLucky,
 					losses = bedwars.lossesEightTwoLucky + bedwars.lossesFourFourLucky,
 					finalKills = bedwars.finalKillsEightTwoLucky + bedwars.finalKillsFourFourLucky,
@@ -162,7 +174,7 @@ data class Statistics(
 					bedsBroken = bedwars.bedsBrokenEightTwoLucky + bedwars.bedsBrokenFourFourLucky,
 					bedsLost = bedwars.bedsLostEightTwoLucky + bedwars.bedsLostFourFourLucky
 				),
-				rush = ModeStatistics(
+				rush = ModeStats(
 					wins = bedwars.winsEightOneRush + bedwars.winsEightTwoRush + bedwars.winsFourFourRush,
 					losses = bedwars.lossesEightOneRush + bedwars.lossesEightTwoRush + bedwars.lossesFourFourRush,
 					finalKills = bedwars.finalKillsEightOneRush + bedwars.finalKillsEightTwoRush + bedwars.finalKillsFourFourRush,
@@ -172,7 +184,7 @@ data class Statistics(
 					bedsBroken = bedwars.bedsBrokenEightOneRush + bedwars.bedsBrokenEightTwoRush + bedwars.bedsBrokenFourFourRush,
 					bedsLost = bedwars.bedsLostEightOneRush + bedwars.bedsLostEightTwoRush + bedwars.bedsLostFourFourRush
 				),
-				swap = ModeStatistics(
+				swap = ModeStats(
 					wins = bedwars.winsEightTwoSwap + bedwars.winsFourFourSwap,
 					losses = bedwars.lossesEightTwoSwap + bedwars.lossesFourFourSwap,
 					finalKills = bedwars.finalKillsEightTwoSwap + bedwars.finalKillsFourFourSwap,
@@ -182,7 +194,7 @@ data class Statistics(
 					bedsBroken = bedwars.bedsBrokenEightTwoSwap + bedwars.bedsBrokenFourFourSwap,
 					bedsLost = bedwars.bedsLostEightTwoSwap + bedwars.bedsLostFourFourSwap
 				),
-				ultimate = ModeStatistics(
+				ultimate = ModeStats(
 					wins = bedwars.winsEightOneUltimate + bedwars.winsEightTwoUltimate + bedwars.winsFourFourUltimate,
 					losses = bedwars.lossesEightOneUltimate + bedwars.lossesEightTwoUltimate + bedwars.lossesFourFourUltimate,
 					finalKills = bedwars.finalKillsEightOneUltimate + bedwars.finalKillsEightTwoUltimate + bedwars.finalKillsFourFourUltimate,
@@ -192,7 +204,7 @@ data class Statistics(
 					bedsBroken = bedwars.bedsBrokenEightOneUltimate + bedwars.bedsBrokenEightTwoUltimate + bedwars.bedsBrokenFourFourUltimate,
 					bedsLost = bedwars.bedsLostEightOneUltimate + bedwars.bedsLostEightTwoUltimate + bedwars.bedsLostFourFourUltimate
 				),
-				underworld = ModeStatistics(
+				underworld = ModeStats(
 					wins = bedwars.winsEightTwoUnderworld + bedwars.winsFourFourUnderworld,
 					losses = bedwars.lossesEightTwoUnderworld + bedwars.lossesFourFourUnderworld,
 					finalKills = bedwars.finalKillsEightTwoUnderworld + bedwars.finalKillsFourFourUnderworld,
@@ -202,7 +214,7 @@ data class Statistics(
 					bedsBroken = bedwars.bedsBrokenEightTwoUnderworld + bedwars.bedsBrokenFourFourUnderworld,
 					bedsLost = bedwars.bedsLostEightTwoUnderworld + bedwars.bedsLostFourFourUnderworld
 				),
-				voidless = ModeStatistics(
+				voidless = ModeStats(
 					wins = bedwars.winsEightTwoVoidless + bedwars.winsFourFourVoidless,
 					losses = bedwars.lossesEightTwoVoidless + bedwars.lossesFourFourVoidless,
 					finalKills = bedwars.finalKillsEightTwoVoidless + bedwars.finalKillsFourFourVoidless,
@@ -212,7 +224,7 @@ data class Statistics(
 					bedsBroken = bedwars.bedsBrokenEightTwoVoidless + bedwars.bedsBrokenFourFourVoidless,
 					bedsLost = bedwars.bedsLostEightTwoVoidless + bedwars.bedsLostFourFourVoidless
 				),
-				oneblock = ModeStatistics(
+				oneblock = ModeStats(
 					wins = bedwars.winsOneblock,
 					losses = bedwars.lossesOneblock,
 					finalKills = bedwars.finalKillsOneblock,
